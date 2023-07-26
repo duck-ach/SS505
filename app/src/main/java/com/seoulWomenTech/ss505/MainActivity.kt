@@ -2,6 +2,7 @@ package com.seoulWomenTech.ss505
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.seoulWomenTech.ss505.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -11,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        // Addr insert
+        Log.i("주소",AddrDAO.selectData(this,1).toString())
 
 
 
