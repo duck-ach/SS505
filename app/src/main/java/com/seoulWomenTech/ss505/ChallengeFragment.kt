@@ -32,13 +32,11 @@ class ChallengeFragment : Fragment() {
 
         fragmentChallengeBinding.run{
 
-
-
-//            recyclerViewChallenge.run{
-//                adapter = ChallengeRecyclerViewAdapter()
-//                layoutManager = LinearLayoutManager(mainActivity)
-//                addItemDecoration(DividerItemDecoration(mainActivity, DividerItemDecoration.VERTICAL))
-//            }
+            recyclerViewChallenge.run{
+                adapter = ChallengeRecyclerViewAdapter()
+                layoutManager = LinearLayoutManager(mainActivity)
+                addItemDecoration(DividerItemDecoration(mainActivity, DividerItemDecoration.VERTICAL))
+            }
 
         }
 
@@ -47,59 +45,60 @@ class ChallengeFragment : Fragment() {
         return fragmentChallengeBinding.root
     }
 
-//    inner class ChallengeRecyclerViewAdapter : RecyclerView.Adapter<ChallengeRecyclerViewAdapter.ChallengeViewHolderClass>(){
-//
-//        inner class ChallengeViewHolderClass(rowChallengeBinding: RowChallengeBinding) : RecyclerView.ViewHolder(rowChallengeBinding.root){
-//            var textViewRowChallengeDeadLine: TextView
-//            var textViewRowChallengeTitle: TextView
-//            var challengeBtnParticipate : Button
-//
-//            init {
-//                textViewRowChallengeDeadLine = rowChallengeBinding.challengeRowDeadLine
-//                textViewRowChallengeTitle = rowChallengeBinding.challengeRowTitle
-//                challengeBtnParticipate = rowChallengeBinding.challengeBtnParticipate
-//
-//                rowChallengeBinding.root.setOnClickListener {
-//                    mainActivity.rowPosition = adapterPosition
-//                    challengeBtnParticipate.setOnClickListener {
-//                        mainActivity.replaceFragment(MainActivity.PARTICIPATE_FRAGMENT, true, null)
-//                    }
-//                }
-//            }
-//
-//
-//        }
-//
-//        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChallengeViewHolderClass {
-//            val rowChallengeBinding = RowChallengeBinding.inflate(layoutInflater)
-//            val ChallengeViewHolderClass = ChallengeViewHolderClass(rowChallengeBinding)
-//
-//            rowChallengeBinding.root.layoutParams = ViewGroup.LayoutParams(
-//                ViewGroup.LayoutParams.MATCH_PARENT,
-//                ViewGroup.LayoutParams.WRAP_CONTENT
-//            )
-//
-//            return ChallengeViewHolderClass
-//        }
-//
-//        override fun getItemCount(): Int {
-//            return challengeList.size
-//        }
-//
-//        override fun onBindViewHolder(holder: ChallengeViewHolderClass, position: Int) {
-//            holder.textViewRowChallengeDeadLine.text = challengeList[position].progDate
-//            holder.textViewRowChallengeTitle.text = challengeList[position].name
-//        }
-//    }
-//
-//    override fun onResume() {
-//        super.onResume()
-//
-//        challengeList = ChallengeDAO.selectAllData(mainActivity)
-//
-//        // 리사이클러뷰 갱신
-//        fragmentChallengeBinding.recyclerViewChallenge.adapter?.notifyDataSetChanged()
-//    }
+    inner class ChallengeRecyclerViewAdapter : RecyclerView.Adapter<ChallengeRecyclerViewAdapter.ChallengeViewHolderClass>(){
+
+        inner class ChallengeViewHolderClass(rowChallengeBinding: RowChallengeBinding) : RecyclerView.ViewHolder(rowChallengeBinding.root){
+            var textViewRowChallengeDeadLine: TextView
+            var textViewRowChallengeTitle: TextView
+            var challengeBtnParticipate : Button
+
+            init {
+                textViewRowChallengeDeadLine = rowChallengeBinding.challengeRowDeadLine
+                textViewRowChallengeTitle = rowChallengeBinding.challengeRowTitle
+                challengeBtnParticipate = rowChallengeBinding.challengeBtnParticipate
+
+                rowChallengeBinding.root.setOnClickListener {
+                    mainActivity.rowPosition = adapterPosition
+                    challengeBtnParticipate.setOnClickListener {
+
+                        mainActivity.replaceFragment(MainActivity.PARTICIPATE_FRAGMENT, true, null)
+                    }
+                }
+            }
+
+
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChallengeViewHolderClass {
+            val rowChallengeBinding = RowChallengeBinding.inflate(layoutInflater)
+            val ChallengeViewHolderClass = ChallengeViewHolderClass(rowChallengeBinding)
+
+            rowChallengeBinding.root.layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+
+            return ChallengeViewHolderClass
+        }
+
+        override fun getItemCount(): Int {
+            return challengeList.size
+        }
+
+        override fun onBindViewHolder(holder: ChallengeViewHolderClass, position: Int) {
+            holder.textViewRowChallengeDeadLine.text = challengeList[position].progDate
+            holder.textViewRowChallengeTitle.text = challengeList[position].name
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        challengeList = ChallengeDAO.selectAllData(mainActivity)
+
+        // 리사이클러뷰 갱신
+        fragmentChallengeBinding.recyclerViewChallenge.adapter?.notifyDataSetChanged()
+    }
 
 
 }

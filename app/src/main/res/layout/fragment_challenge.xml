@@ -13,4 +13,9 @@
         android:text="ChallengeFragment"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewChallenge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

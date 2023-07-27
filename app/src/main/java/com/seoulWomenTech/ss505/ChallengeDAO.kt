@@ -3,6 +3,7 @@ package com.seoulWomenTech.ss505
 
 import android.content.ContentValues
 import android.content.Context
+import android.util.Log
 
 class ChallengeDAO {
 
@@ -34,14 +35,14 @@ class ChallengeDAO {
         fun selectData(context: Context, challenge_id:Int):ChallengeClass{
 
             val dbHelper = DBHelper(context)
-            val selection = "challenge_id = ?"
+            val selection = "CLG_ID = ?"
             val args = arrayOf("$challenge_id")
             val cursor = dbHelper.writableDatabase.query("Challenge", null, selection, args, null, null, null)
 
             cursor.moveToNext()
 
             val idx1 = cursor.getColumnIndex("CLG_ID")
-            val idx2 = cursor.getColumnIndex("ADIM_ID")
+            val idx2 = cursor.getColumnIndex("ADMIN_ID")
             val idx3 = cursor.getColumnIndex("ADDR_ID")
             val idx4 = cursor.getColumnIndex("CLG_NM")
             val idx5 = cursor.getColumnIndex("CLG_CONTENT")
@@ -84,7 +85,7 @@ class ChallengeDAO {
 
             while(cursor.moveToNext()){
                 val idx1 = cursor.getColumnIndex("CLG_ID")
-                val idx2 = cursor.getColumnIndex("ADIM_ID")
+                val idx2 = cursor.getColumnIndex("ADMIN_ID")
                 val idx3 = cursor.getColumnIndex("ADDR_ID")
                 val idx4 = cursor.getColumnIndex("CLG_NM")
                 val idx5 = cursor.getColumnIndex("CLG_CONTENT")
@@ -95,6 +96,9 @@ class ChallengeDAO {
                 val idx10 = cursor.getColumnIndex("IS_CLG_ACTIVE")
                 val idx11 = cursor.getColumnIndex("CLG_REWORD")
                 val idx12 = cursor.getColumnIndex("CLG_IMG")
+
+                Log.d("쿼리",idx1.toString())
+                Log.d("쿼리",idx2.toString())
 
                 val clg_id = cursor.getInt(idx1)
                 val admin_id = cursor.getInt(idx2)

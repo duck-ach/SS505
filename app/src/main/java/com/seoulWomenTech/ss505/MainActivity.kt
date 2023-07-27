@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     var newFragment:Fragment? = null
     var oldFragment:Fragment? = null
 
+
+
     companion object {
         // Activity가 관리할 프래그먼트들의 이름
         val MAIN_FRAGMENT = "MainFragment" //  메인 화면
@@ -28,6 +30,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // challenge insert 문
+//        val challenge1 = ChallengeClass(0,1,1,"챌린지1","챌린지내용입니다","2023-07-25","2023-08-04","12:00",5,1,100,"이미지주소")
+//        ChallengeDAO.insertData(this,challenge1)
+//        val challenge2 = ChallengeClass(0,1,1,"챌린지2","챌린지내용입니다2","2023-07-26","2023-08-05","14:00",5,1,100,"이미지주소2")
+//        ChallengeDAO.insertData(this,challenge2)
+//        val challenge3 = ChallengeClass(0,1,1,"챌린지3","챌린지내용입니다3","2023-07-27","2023-08-06","15:00",5,1,100,"이미지주소3")
+//        ChallengeDAO.insertData(this,challenge3)
+
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
         replaceFragment(MAIN_FRAGMENT, false, null)
