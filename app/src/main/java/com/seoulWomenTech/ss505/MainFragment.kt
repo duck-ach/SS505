@@ -38,20 +38,20 @@ class MainFragment : Fragment() {
         viewPager.adapter = adapter
 
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                tab.select()
+        fragmentMainBinding.run {
+            toolbarMain.run{
+                title = "Safety Seoul"
 
+                setNavigationIcon(R.drawable.menu_24)
+                setNavigationOnClickListener {
+                    // 네비게이션 뷰를 보여준다.
+
+                }
+
+                inflateMenu(R.menu.menu_main)
             }
+        }
 
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-
-            }
-        })
         // TabLayout, ViewPager 연결
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {

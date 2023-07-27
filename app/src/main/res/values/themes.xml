@@ -16,6 +16,11 @@
 
     <style name="Theme.SS505" parent="Base.Theme.SS505" />
 
+    <!-- 툴바의 테마로 사용할 테마 -->
+    <style name="Theme.SS505.Toolbar" parent="ThemeOverlay.Material3.Toolbar.Surface">
+        <item name="colorPrimary">#2E335A</item>
+    </style>
+
 
 
 </resources>
