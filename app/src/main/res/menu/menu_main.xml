@@ -5,5 +5,5 @@
     <item
         android:icon="?android:attr/actionModeWebSearchDrawable"
         android:title="menuMainSearch"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 </menu>
