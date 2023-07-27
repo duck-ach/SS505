@@ -36,35 +36,39 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="타이틀 입니다"
-                            android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-                        <TextView
+                            android:id="@+id/challengeRowDeadLine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="두 번째 타이틀 입니다"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="?android:attr/textColorSecondary" />
+
+                        <TextView
+                            android:id="@+id/challengeRowTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="타이틀 입니다"
+                            android:textAppearance="?attr/textAppearanceTitleMedium" />
+
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginTop="16dp"
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/challengeRowDate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
                             android:text="서포팅 타이틀 입니다"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="?android:attr/textColorSecondary" />
 
                         <TextView
-                            android:id="@+id/textView2"
+                            android:id="@+id/challengeRowLocation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="서포팅 타이틀 입니다"
@@ -72,7 +76,7 @@
                             android:textColor="?android:attr/textColorSecondary" />
 
                         <TextView
-                            android:id="@+id/textView3"
+                            android:id="@+id/challengeRowParticipant"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="서포팅 타이틀 입니다"
@@ -85,6 +89,7 @@
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/challengeBtnParticipate"
                 style="@style/ThemeOverlay.Material3.Button.ElevatedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
