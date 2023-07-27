@@ -56,13 +56,10 @@ class ChallengeFragment : Fragment() {
                 textViewRowChallengeDeadLine = rowChallengeBinding.challengeRowDeadLine
                 textViewRowChallengeTitle = rowChallengeBinding.challengeRowTitle
                 challengeBtnParticipate = rowChallengeBinding.challengeBtnParticipate
-
-                rowChallengeBinding.root.setOnClickListener {
+                challengeBtnParticipate.setOnClickListener {
                     mainActivity.rowPosition = adapterPosition
-                    challengeBtnParticipate.setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.PARTICIPATE_FRAGMENT, true, null)
 
-                        mainActivity.replaceFragment(MainActivity.PARTICIPATE_FRAGMENT, true, null)
-                    }
                 }
             }
 
