@@ -2,8 +2,12 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.SS505" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+<!--        <item name="android:windowBackground">#2E335A</item>-->
+
     </style>
 
     <style name="Theme.SS505" parent="Base.Theme.SS505" />
+
+
 </resources>

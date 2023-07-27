@@ -22,11 +22,11 @@ class AddrDAO {
         }
 
         // Read Condition : 조건에 맞는 행 하나를 가져온다.
-        fun selectData(context: Context, idx:Int):AddrClass{
+        fun selectData(context: Context, addr_id:Int):AddrClass{
 
             val dbHelper = DBHelper(context)
-            val selection = "idx = ?"
-            val args = arrayOf("$idx")
+            val selection = "addr_id = ?"
+            val args = arrayOf("$addr_id")
             val cursor = dbHelper.writableDatabase.query("ADDR", null, selection, args, null, null, null)
 
             cursor.moveToNext()
@@ -35,12 +35,12 @@ class AddrDAO {
             val idx2 = cursor.getColumnIndex("G_NM")
             val idx3 = cursor.getColumnIndex("D_NM")
 
-            val idx = cursor.getInt(idx1)
+            val addr_id = cursor.getInt(idx1)
             val g_nm = cursor.getString(idx2)
             val d_nm = cursor.getString(idx3)
 
 
-            val AddrClass = AddrClass(idx,g_nm,d_nm)
+            val AddrClass = AddrClass(addr_id,g_nm,d_nm)
 
             dbHelper.close()
             return AddrClass
@@ -51,22 +51,21 @@ class AddrDAO {
 
             val dbHelper = DBHelper(context)
 
-            //idx 기준으로 역순 정렬
             val cursor = dbHelper.writableDatabase.query("ADDR", null, null, null, null, null, null)
 
             val dataList = mutableListOf<AddrClass>()
 
             while(cursor.moveToNext()){
-                val idx1 = cursor.getColumnIndex("idx")
+                val idx1 = cursor.getColumnIndex("addr_id")
                 val idx2 = cursor.getColumnIndex("G_NM")
                 val idx3 = cursor.getColumnIndex("D_NM")
 
-                val idx = cursor.getInt(idx1)
+                val addr_id = cursor.getInt(idx1)
                 val g_nm = cursor.getString(idx2)
                 val d_nm = cursor.getString(idx3)
 
 
-                val AddrClass = AddrClass(idx,g_nm,d_nm)
+                val AddrClass = AddrClass(addr_id,g_nm,d_nm)
 
                 dataList.add(AddrClass)
             }
@@ -81,7 +80,7 @@ class AddrDAO {
             val cv = ContentValues()
             cv.put("g_nm", obj.g_nm)
             cv.put("d_nm", obj.d_nm)
-            val condition = "idx = ?"
+            val condition = "addr_id = ?"
             val args = arrayOf("${obj.idx}")
             val dbHelper = DBHelper(context)
             dbHelper.writableDatabase.update("ADDR", cv, condition, args)
@@ -90,9 +89,9 @@ class AddrDAO {
 
 
         // Delete : 조건 맞는 행을 삭제한다.
-        fun deleteData(context:Context, idx:Int){
-            val condition = "idx = ?"
-            val args = arrayOf("$idx")
+        fun deleteData(context:Context, addr_id:Int){
+            val condition = "addr_id = ?"
+            val args = arrayOf("$addr_id")
 
             val dbHelper = DBHelper(context)
             dbHelper.writableDatabase.delete("ADDR", condition, args)
