@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
 //        val challenge3 = ChallengeClass(0,1,1,"챌린지3","챌린지내용입니다3","2023-07-27","2023-08-06","15:00",5,1,100,"이미지주소3")
 //        ChallengeDAO.insertData(this,challenge3)
 
+        //participant insert 문
+
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
         replaceFragment(MAIN_FRAGMENT, false, null)
@@ -107,3 +109,18 @@ class MainActivity : AppCompatActivity() {
 // 정보를 담을 객체
 data class AddrClass(var idx: Int, var g_nm: String, var d_nm: String)
 data class ChallengeClass(var idx: Int, var admin_id: Int,var addr_id: Int,var name: String, var content: String,var postDate: String,var progDate: String, var progTime: String, var maxUser: Int, var active: Int, var reword: Int,var img: String)
+data class ParticipantsClass(var clg_id:Int, var user_id:Int)
+data class UserInfo(
+    val user_id: Int,
+    val name: String,
+    val email: String,
+    val password: String,
+    val role: Int,
+    val gender: Int,
+    val point: Int,
+    val phone: String,
+    val sns: String,
+    val address: String,
+    val date: String,
+    val image: String
+)
