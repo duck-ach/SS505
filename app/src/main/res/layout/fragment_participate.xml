@@ -49,6 +49,7 @@
                 android:id="@+id/participateDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#FFFFFF" />
@@ -57,6 +58,7 @@
                 android:id="@+id/participateLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#FFFFFF" />
@@ -65,20 +67,19 @@
                 android:id="@+id/participateContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/btnParticipate"
-                style="@style/Widget.Material3.Button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#48319D"
-                android:elevation="20dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/button_round"
                 android:text="참여"
-                app:cornerRadius="?android:attr/buttonCornerRadius" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <LinearLayout
                 android:layout_width="match_parent"
