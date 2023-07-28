@@ -17,6 +17,8 @@ class ParticipateFragment : Fragment() {
 
     lateinit var fragmentParticipateBinding: FragmentParticipateBinding
     lateinit var mainActivity: MainActivity
+
+    val participantsList = mutableListOf<UserInfo>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,6 +46,8 @@ class ParticipateFragment : Fragment() {
             participateDate.text=challenge.progDate
             participateLocation.text = AddrDAO.selectData(mainActivity,challenge.addr_id).d_nm+" " + AddrDAO.selectData(mainActivity,challenge.addr_id).g_nm
             participateContent.text= challenge.content
+            
+
 
         }
 
