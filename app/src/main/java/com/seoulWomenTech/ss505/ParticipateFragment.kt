@@ -46,8 +46,17 @@ class ParticipateFragment : Fragment() {
             participateDate.text=challenge.progDate
             participateLocation.text = AddrDAO.selectData(mainActivity,challenge.addr_id).d_nm+" " + AddrDAO.selectData(mainActivity,challenge.addr_id).g_nm
             participateContent.text= challenge.content
-            
 
+            val participantsTemp = ParticipantsDAO.selectByClgId(mainActivity,challenge.idx)
+
+            for (p in participantsTemp){
+                val user = UserInfoDAO.selectData(mainActivity,p.user_id)
+                if (user != null) {
+                    participantsList.add(user)
+                }
+            }
+
+            participateMaxUser.append("( ${participantsList.size} / ${challenge.maxUser} )")
 
         }
 
