@@ -31,7 +31,7 @@
             android:padding="10dp">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/participateImg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/sample_img" />
@@ -91,11 +91,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="참여자"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="#FFFFFF" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewPaticipate"
+                    android:id="@+id/recyclerViewParticipate"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp" />
