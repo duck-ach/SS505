@@ -32,10 +32,19 @@ class ParticipateFragment : Fragment() {
                 setNavigationOnClickListener {
                     // 네비게이션 뷰를 보여준다.
 
+
                 }
 
                 inflateMenu(R.menu.menu_main)
             }
+
+            val challenge = ChallengeDAO.selectData(mainActivity,mainActivity.rowPosition)
+
+            participateTitle.text = challenge.name
+            participateDate.text=challenge.progDate
+            participateLocation.text = AddrDAO.selectData(mainActivity,challenge.addr_id).d_nm+" " + AddrDAO.selectData(mainActivity,challenge.addr_id).g_nm
+            participateContent.text= challenge.content
+
         }
 
         return fragmentParticipateBinding.root
