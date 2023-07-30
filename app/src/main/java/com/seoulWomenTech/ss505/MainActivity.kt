@@ -13,6 +13,7 @@ import com.seoulWomenTech.ss505.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     lateinit var activityMainBinding: ActivityMainBinding
 
+    val userPosition = 2
     // 사용자가 누른 항목 번호
     var rowPosition = 0
 
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         // Activity가 관리할 프래그먼트들의 이름
         val MAIN_FRAGMENT = "MainFragment" //  메인 화면
         val PARTICIPATE_FRAGMENT = "ParticipateFragment" //  참여 화면
+        val CPI_FRAGMENT = "CPIFragment" //  인증샷 제출 화면
 
     }
 
@@ -60,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         newFragment = when(name){
             MAIN_FRAGMENT -> MainFragment()
             PARTICIPATE_FRAGMENT -> ParticipateFragment()
+            CPI_FRAGMENT -> CPIFragment()
             else -> Fragment()
         }
 

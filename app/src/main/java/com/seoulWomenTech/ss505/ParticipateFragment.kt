@@ -27,7 +27,6 @@ class ParticipateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
         fragmentParticipateBinding = FragmentParticipateBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
@@ -39,7 +38,6 @@ class ParticipateFragment : Fragment() {
 
 
         fragmentParticipateBinding.run {
-
 
             toolbarParticipate.run{
                 title = "Safety Seoul"

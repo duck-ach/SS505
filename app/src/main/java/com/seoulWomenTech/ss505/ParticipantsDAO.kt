@@ -47,7 +47,7 @@ class ParticipantsDAO {
         }
 
 
-        // Read by clg_id : clg_id에 해당하는 모든 참가자 정보를 가져온다.
+        // Read by clg_id : clg_id에 해당하는 모든 정보를 가져온다.
         fun selectByClgId(context: Context, clg_id: Int): List<ParticipantsClass> {
             val dbHelper = DBHelper(context)
             val selection = "CLG_ID = ?"
@@ -73,6 +73,34 @@ class ParticipantsDAO {
 
             return dataList
         }
+
+        // Read by user_id : user_id에 해당하는 모든 정보를 가져온다.
+        fun selectByUserId(context: Context, user_id: Int): List<ParticipantsClass> {
+            val dbHelper = DBHelper(context)
+            val selection = "USER_ID = ?"
+            val args = arrayOf("$user_id")
+            val cursor = dbHelper.writableDatabase.query("Participants", null, selection, args, null, null, null)
+
+            val dataList = mutableListOf<ParticipantsClass>()
+
+            while (cursor.moveToNext()) {
+                val idx1 = cursor.getColumnIndex("CLG_ID")
+                val idx2 = cursor.getColumnIndex("USER_ID")
+
+                val clg_id = cursor.getInt(idx1)
+                val user_id = cursor.getInt(idx2)
+
+                val participants = ParticipantsClass(clg_id, user_id)
+
+                dataList.add(participants)
+            }
+
+            cursor.close()
+            dbHelper.close()
+
+            return dataList
+        }
+
         // Read All : 모든 행을 가져온다
         fun selectAllData(context: Context): MutableList<ParticipantsClass> {
             val dbHelper = DBHelper(context)
