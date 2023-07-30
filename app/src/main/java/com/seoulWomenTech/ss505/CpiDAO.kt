@@ -105,7 +105,51 @@ class CpiDAO {
 
             cursor.close()
             db.close()
-            
+
+            return dataList
+        }
+
+        // Read by USER_ID : USER_ID로 데이터를 검색하는 메서드
+        fun selectDataByUserId(context: Context, user_id: Int): MutableList<CPIClass> {
+            val dbHelper = DBHelper(context)
+            val selection = "USER_ID = ?"
+            val args = arrayOf("$user_id")
+            val db = dbHelper.writableDatabase
+
+            val cursor = db.query("CPI", null, selection, args, null, null, null)
+
+            val dataList = mutableListOf<CPIClass>()
+
+            if (cursor.moveToFirst()) {
+                val idx1 = cursor.getColumnIndex("CPI_ID")
+                val idx2 = cursor.getColumnIndex("CLG_ID")
+                val idx3 = cursor.getColumnIndex("USER_ID")
+                val idx4 = cursor.getColumnIndex("CPI_URL")
+                val idx5 = cursor.getColumnIndex("CPI_UN")
+                val idx6 = cursor.getColumnIndex("CPI_CN")
+
+                val cpi_id = cursor.getInt(idx1)
+                val clg_id = cursor.getInt(idx2)
+                val user_id = cursor.getInt(idx3)
+                val cpi_url = cursor.getString(idx4)
+                val cpi_un = cursor.getString(idx5)
+                val cpi_cn = cursor.getString(idx6)
+
+                val CPIClass = CPIClass(
+                    cpi_id,
+                    clg_id,
+                    user_id,
+                    cpi_url,
+                    cpi_un,
+                    cpi_cn
+                )
+
+                dataList.add(CPIClass)
+            }
+
+            cursor.close()
+            db.close()
+
             return dataList
         }
 
