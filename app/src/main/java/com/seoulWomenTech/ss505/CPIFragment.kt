@@ -34,7 +34,7 @@ class CPIFragment : Fragment() {
             CPITitle.text = cpiChallenge.name
             CPIDate.append("${cpiChallenge.progDate} ${cpiChallenge.progTime}")
             CPIMaxUser.append("${cpiChallenge.maxUser}명")
-//            CPILocation.append(cpiChallenge.)
+            CPILocation.append(cpiChallenge.location)
             CPIContent.append(cpiChallenge.content)
         }
 

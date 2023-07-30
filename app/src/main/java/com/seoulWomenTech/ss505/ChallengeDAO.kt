@@ -21,7 +21,7 @@ class ChallengeDAO {
             contentValues.put("IS_CLG_ACTIVE", data.active)
             contentValues.put("CLG_REWORD", data.reword)
             contentValues.put("CLG_IMG", data.img)
-            contentValues.put("CLG_LOCATION", data.location)
+            contentValues.put("CLG_LOCATION", data.location) 
 
             val dbHelper = DBHelper(context)
 
@@ -50,7 +50,7 @@ class ChallengeDAO {
             val idx10 = cursor.getColumnIndex("IS_CLG_ACTIVE")
             val idx11 = cursor.getColumnIndex("CLG_REWORD")
             val idx12 = cursor.getColumnIndex("CLG_IMG")
-            val idx13 = cursor.getColumnIndex("CLG_LOCATION")
+            val idx13 = cursor.getColumnIndex("CLG_LOCATION") 
 
             val clg_id = cursor.getInt(idx1)
             val admin_id = cursor.getInt(idx2)
@@ -64,7 +64,7 @@ class ChallengeDAO {
             val is_clg_active = cursor.getInt(idx10)
             val clg_reword = cursor.getInt(idx11)
             val clg_img = cursor.getString(idx12)
-            val clg_location = cursor.getString(idx13) 
+            val clg_location = cursor.getString(idx13)
 
             val challengeClass = ChallengeClass(clg_id, admin_id, addr_id, clg_nm, clg_content, clg_post_date, clg_prog_date, clg_prog_time, clg_max_user, is_clg_active, clg_reword, clg_img, clg_location)
 
