@@ -17,6 +17,21 @@ class CPIFragment : Fragment() {
         fragmentCPIBinding = FragmentCPIBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
+        fragmentCPIBinding.run {
+            toolbarCPI.run{
+                title = "Safety Seoul"
+
+                setNavigationIcon(R.drawable.menu_24)
+                setNavigationOnClickListener {
+                    // 네비게이션 뷰를 보여준다.
+
+
+                }
+
+                inflateMenu(R.menu.menu_main)
+            }
+        }
+
         return fragmentCPIBinding.root
 
 
