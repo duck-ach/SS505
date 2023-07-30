@@ -5,8 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import com.google.android.material.tabs.TabLayoutMediator
 import com.google.android.material.transition.MaterialSharedAxis
 import com.seoulWomenTech.ss505.databinding.ActivityMainBinding
 
@@ -114,7 +112,7 @@ data class AddrClass(var idx: Int, var g_nm: String, var d_nm: String)
 data class ChallengeClass(var idx: Int, var admin_id: Int,var addr_id: Int,var name: String, var content: String,var postDate: String,var progDate: String, var progTime: String, var maxUser: Int, var active: Int, var reword: Int,var img: String)
 data class ParticipantsClass(var clg_id:Int, var user_id:Int)
 data class UserInfo(
-    val user_id: Int,
+    val idx: Int,
     val name: String,
     val email: String,
     val password: String,
@@ -126,4 +124,13 @@ data class UserInfo(
     val address: String,
     val date: String,
     val image: String
+)
+
+data class CPIClass(
+    val idx: Int,
+    val clg_id: Int,
+    val user_id: Int,
+    val url: String,
+    val un: String,
+    val cn: String
 )

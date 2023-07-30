@@ -2,7 +2,6 @@ package com.seoulWomenTech.ss505
 
 import android.content.ContentValues
 import android.content.Context
-import android.util.Log
 
 class UserInfoDAO {
 
@@ -137,7 +136,7 @@ class UserInfoDAO {
             cv.put("USER_IMG", userInfo.image)
 
             val condition = "USER_ID = ?"
-            val args = arrayOf("${userInfo.user_id}")
+            val args = arrayOf("${userInfo.idx}")
 
             val dbHelper = DBHelper(context)
             dbHelper.writableDatabase.update("UserInfo", cv, condition, args)

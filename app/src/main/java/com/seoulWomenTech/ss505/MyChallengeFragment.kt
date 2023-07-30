@@ -20,6 +20,8 @@ class MyChallengeFragment : Fragment() {
     lateinit var mainActivity: MainActivity
 
     var challengeList = mutableListOf<ChallengeClass>()
+    var challengeActiveList = mutableListOf<ChallengeClass>()
+    var challengeDisabledList = mutableListOf<ChallengeClass>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +32,7 @@ class MyChallengeFragment : Fragment() {
 
         var challengeParticipate = ParticipantsDAO.selectByUserId(mainActivity, mainActivity.userPosition)
         challengeList = challengeParticipate.map { p ->ChallengeDAO.selectData(mainActivity,p.clg_id) } as MutableList
-        
+
 
         fragmentMyChallengeBinding.run {
             recyclerViewMyChallengeActive.run {

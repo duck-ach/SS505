@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.common.reflect.Reflection.getPackageName
 import com.seoulWomenTech.ss505.databinding.FragmentParticipateBinding
 import com.seoulWomenTech.ss505.databinding.RowParticipateBinding
 
@@ -70,7 +69,7 @@ class ParticipateFragment : Fragment() {
             var participantsTemp = ParticipantsDAO.selectByClgId(mainActivity,challenge.idx)
 
             //현재 로그인 한 유저가 참여 중인지 확인
-            var isParticipate = participantsTemp.filter { p -> p.user_id == userTemp!!.user_id }.size
+            var isParticipate = participantsTemp.filter { p -> p.user_id == userTemp!!.idx }.size
 
             Log.d("사용자","$isParticipate")
 
@@ -87,7 +86,7 @@ class ParticipateFragment : Fragment() {
 
 
             btnParticipate.setOnClickListener {
-                val participant = ParticipantsClass(challenge.idx, userTemp!!.user_id)
+                val participant = ParticipantsClass(challenge.idx, userTemp!!.idx)
                 if(isParticipate==0){
                     ParticipantsDAO.insertData(mainActivity,participant)
                     participantsTemp = ParticipantsDAO.selectByClgId(mainActivity,challenge.idx)
