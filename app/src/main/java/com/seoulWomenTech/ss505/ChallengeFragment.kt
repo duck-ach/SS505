@@ -57,7 +57,7 @@ class ChallengeFragment : Fragment() {
                 textViewRowChallengeTitle = rowChallengeBinding.challengeRowTitle
                 challengeBtnParticipate = rowChallengeBinding.challengeBtnParticipate
                 challengeBtnParticipate.setOnClickListener {
-                    mainActivity.rowPosition = adapterPosition
+                    mainActivity.rowPosition = challengeList[adapterPosition].idx
                     mainActivity.replaceFragment(MainActivity.PARTICIPATE_FRAGMENT, true, null)
 
                 }

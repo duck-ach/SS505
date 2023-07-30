@@ -31,9 +31,10 @@
             android:padding="10dp">
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/participateImg"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="158dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/sample_img" />
 
             <TextView
@@ -49,6 +50,7 @@
                 android:id="@+id/participateDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#FFFFFF" />
@@ -57,20 +59,33 @@
                 android:id="@+id/participateLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#FFFFFF" />
 
-            <Button
-                android:id="@+id/btnParticipate"
-                style="@style/Widget.Material3.Button"
+            <TextView
+                android:id="@+id/participateContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#48319D"
-                android:elevation="20dp"
+                android:layout_marginTop="5dp"
+                android:text="TextView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white" />
+
+            <android.widget.Button
+                android:id="@+id/btnParticipate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/button_round"
                 android:text="참여"
-                app:cornerRadius="?android:attr/buttonCornerRadius" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:shadowColor="#000000"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="5"
+                android:textColor="@color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -79,15 +94,15 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/participateMaxUser"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="참여자"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="#FFFFFF" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewPaticipate"
+                    android:id="@+id/recyclerViewParticipate"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="5dp" />
