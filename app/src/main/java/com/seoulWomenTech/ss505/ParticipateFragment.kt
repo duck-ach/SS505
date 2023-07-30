@@ -1,17 +1,16 @@
 package com.seoulWomenTech.ss505
 
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.lifecycle.Transformations.map
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.common.reflect.Reflection.getPackageName
 import com.seoulWomenTech.ss505.databinding.FragmentParticipateBinding
 import com.seoulWomenTech.ss505.databinding.RowParticipateBinding
 
@@ -55,6 +54,12 @@ class ParticipateFragment : Fragment() {
                 inflateMenu(R.menu.menu_main)
             }
 
+            val imgSrc = mainActivity.resources.getIdentifier(challenge.img, "drawable", mainActivity.packageName)
+
+//            Log.d("이미지",imgSrc.)
+            if(imgSrc!=null){
+                participateImg.setImageResource(imgSrc)
+            }
 
 
             participateTitle.text = challenge.name
