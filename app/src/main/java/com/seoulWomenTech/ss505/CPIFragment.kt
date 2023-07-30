@@ -17,6 +17,8 @@ class CPIFragment : Fragment() {
         fragmentCPIBinding = FragmentCPIBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
+        val cpiChallenge = ChallengeDAO.selectData(mainActivity,mainActivity.rowPosition)
+
         fragmentCPIBinding.run {
             toolbarCPI.run{
                 title = "Safety Seoul"
@@ -25,11 +27,15 @@ class CPIFragment : Fragment() {
                 setNavigationOnClickListener {
                     // 네비게이션 뷰를 보여준다.
 
-
                 }
 
                 inflateMenu(R.menu.menu_main)
             }
+            CPITitle.text = cpiChallenge.name
+            CPIDate.append("${cpiChallenge.progDate} ${cpiChallenge.progTime}")
+            CPIMaxUser.append("${cpiChallenge.maxUser}명")
+//            CPILocation.append(cpiChallenge.)
+            CPIContent.append(cpiChallenge.content)
         }
 
         return fragmentCPIBinding.root
