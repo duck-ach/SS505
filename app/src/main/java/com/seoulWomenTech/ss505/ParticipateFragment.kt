@@ -30,7 +30,7 @@ class ParticipateFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 임시 유저 클래스( 현재 로그인한 유저 정보를 알 수 있는 방법이 없으므로 )
-        val userTemp = UserInfoDAO.selectData(mainActivity,2)
+        val userTemp = UserInfoDAO.selectData(mainActivity, mainActivity.userPosition)
 
         // 현재 챌린지 정보 가져오기
         val challenge = ChallengeDAO.selectData(mainActivity,mainActivity.rowPosition)
