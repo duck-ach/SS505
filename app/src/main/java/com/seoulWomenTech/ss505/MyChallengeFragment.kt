@@ -47,6 +47,12 @@ class MyChallengeFragment : Fragment() {
                 layoutManager = LinearLayoutManager(mainActivity)
                 addItemDecoration(DividerItemDecoration(mainActivity, DividerItemDecoration.VERTICAL))
             }
+
+            recyclerViewmyChallengeDisabled.run {
+                adapter = MyChallengeDisabledRecyclerViewAdapter()
+                layoutManager = LinearLayoutManager(mainActivity)
+                addItemDecoration(DividerItemDecoration(mainActivity, DividerItemDecoration.VERTICAL))
+            }
         }
         return fragmentMyChallengeBinding.root
     }
@@ -98,6 +104,48 @@ class MyChallengeFragment : Fragment() {
         }
     }
 
+
+    inner class MyChallengeDisabledRecyclerViewAdapter : RecyclerView.Adapter<MyChallengeDisabledRecyclerViewAdapter.MyChallengeDisabledViewHolderClass>(){
+
+        inner class MyChallengeDisabledViewHolderClass(rowChallengeBinding: RowChallengeBinding) : RecyclerView.ViewHolder(rowChallengeBinding.root){
+            var textViewRowChallengeDeadLine: TextView
+            var textViewRowChallengeTitle: TextView
+            var challengeBtnParticipate : Button
+
+            init {
+                textViewRowChallengeDeadLine = rowChallengeBinding.challengeRowDeadLine
+                textViewRowChallengeTitle = rowChallengeBinding.challengeRowTitle
+                challengeBtnParticipate = rowChallengeBinding.challengeBtnParticipate
+                challengeBtnParticipate.text = "인증샷 제출 완료"
+
+
+            }
+
+
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyChallengeFragment.MyChallengeDisabledRecyclerViewAdapter.MyChallengeDisabledViewHolderClass {
+            val rowChallengeBinding = RowChallengeBinding.inflate(layoutInflater)
+            val ChallengeViewHolderClass = MyChallengeDisabledViewHolderClass(rowChallengeBinding)
+
+            rowChallengeBinding.root.layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+
+            return ChallengeViewHolderClass
+        }
+
+        override fun getItemCount(): Int {
+            return challengeDisabledList.size
+        }
+
+        override fun onBindViewHolder(holder: MyChallengeFragment.MyChallengeDisabledRecyclerViewAdapter.MyChallengeDisabledViewHolderClass, position: Int) {
+            holder.textViewRowChallengeDeadLine.text = challengeDisabledList[position].progDate
+            holder.textViewRowChallengeTitle.text = challengeDisabledList[position].name
+        }
+    }
+
     override fun onResume() {
         super.onResume()
 
@@ -105,6 +153,7 @@ class MyChallengeFragment : Fragment() {
 
         // 리사이클러뷰 갱신
         fragmentMyChallengeBinding.recyclerViewMyChallengeActive.adapter?.notifyDataSetChanged()
+        fragmentMyChallengeBinding.recyclerViewmyChallengeDisabled.adapter?.notifyDataSetChanged()
     }
 
 
