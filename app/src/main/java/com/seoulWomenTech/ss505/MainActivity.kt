@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
 }
 // 정보를 담을 객체
 data class AddrClass(var idx: Int, var g_nm: String, var d_nm: String)
-data class ChallengeClass(var idx: Int, var admin_id: Int,var addr_id: Int,var name: String, var content: String,var postDate: String,var progDate: String, var progTime: String, var maxUser: Int, var active: Int, var reword: Int,var img: String)
+data class ChallengeClass(var idx: Int, var admin_id: Int,var addr_id: Int,var name: String, var content: String,var postDate: String,var progDate: String, var progTime: String, var maxUser: Int, var active: Int, var reword: Int,var img: String,var location : String)
 data class ParticipantsClass(var clg_id:Int, var user_id:Int)
 data class UserInfo(
     val idx: Int,
