@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.seoulWomenTech.ss505.databinding.FragmentMyChallengeBinding
 import com.seoulWomenTech.ss505.databinding.RowChallengeBinding
 import com.seoulWomenTech.ss505.databinding.RowParticipateBinding
+import java.util.function.Predicate
 
 
 class MyChallengeFragment : Fragment() {
@@ -32,6 +33,12 @@ class MyChallengeFragment : Fragment() {
 
         var challengeParticipate = ParticipantsDAO.selectByUserId(mainActivity, mainActivity.userPosition)
         challengeList = challengeParticipate.map { p ->ChallengeDAO.selectData(mainActivity,p.clg_id) } as MutableList
+
+        val cpiChallengeList = CpiDAO.selectDataByUserId(mainActivity,mainActivity.userPosition).map{ cpi -> cpi.clg_id } as MutableList<Int>
+
+        // cpiChallengList에 challenge 번호가 없는 것들은 인증샷 제출하지 않은 것이라 active로 제출 된 것은 disabled로
+        challengeActiveList = challengeList.filterNot { it.idx in cpiChallengeList } as MutableList<ChallengeClass>
+        challengeDisabledList = challengeList.filter { it.idx in cpiChallengeList } as MutableList<ChallengeClass>
 
 
         fragmentMyChallengeBinding.run {
@@ -58,7 +65,7 @@ class MyChallengeFragment : Fragment() {
                 challengeBtnParticipate.run {
                     text = "인증샷 제출"
                     setOnClickListener {
-                        mainActivity.rowPosition = challengeList[adapterPosition].idx
+                        mainActivity.rowPosition = challengeActiveList[adapterPosition].idx
                         mainActivity.replaceFragment(MainActivity.CPI_FRAGMENT, true, null)
 
                     }
@@ -82,12 +89,12 @@ class MyChallengeFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return challengeList.size
+            return challengeActiveList.size
         }
 
         override fun onBindViewHolder(holder: MyChallengeFragment.MyChallengeActiveRecyclerViewAdapter.MyChallengeActiveViewHolderClass, position: Int) {
-            holder.textViewRowChallengeDeadLine.text = challengeList[position].progDate
-            holder.textViewRowChallengeTitle.text = challengeList[position].name
+            holder.textViewRowChallengeDeadLine.text = challengeActiveList[position].progDate
+            holder.textViewRowChallengeTitle.text = challengeActiveList[position].name
         }
     }
 
