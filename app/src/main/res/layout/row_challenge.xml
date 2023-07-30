@@ -93,9 +93,7 @@
                 style="@style/ThemeOverlay.Material3.Button.ElevatedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="참여"
-                android:textAlignment="center" />
+                android:text="참여"/>
 
         </LinearLayout>
 

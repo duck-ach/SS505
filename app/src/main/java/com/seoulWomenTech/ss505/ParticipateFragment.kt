@@ -1,39 +1,47 @@
 package com.seoulWomenTech.ss505
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
+import androidx.lifecycle.Transformations.map
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.seoulWomenTech.ss505.databinding.FragmentParticipateBinding
-import com.seoulWomenTech.ss505.databinding.RowChallengeBinding
 import com.seoulWomenTech.ss505.databinding.RowParticipateBinding
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 
 class ParticipateFragment : Fragment() {
 
     lateinit var fragmentParticipateBinding: FragmentParticipateBinding
     lateinit var mainActivity: MainActivity
 
-    val participantsList = mutableListOf<UserInfo>()
+    var participantsList = mutableListOf<UserInfo>()
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         fragmentParticipateBinding = FragmentParticipateBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
+        // 임시 유저 클래스( 현재 로그인한 유저 정보를 알 수 있는 방법이 없으므로 )
+        val userTemp = UserInfoDAO.selectData(mainActivity,2)
+
+        // 현재 챌린지 정보 가져오기
+        val challenge = ChallengeDAO.selectData(mainActivity,mainActivity.rowPosition)
+
+
         fragmentParticipateBinding.run {
+
+
             toolbarParticipate.run{
                 title = "Safety Seoul"
 
@@ -47,30 +55,72 @@ class ParticipateFragment : Fragment() {
                 inflateMenu(R.menu.menu_main)
             }
 
-            val challenge = ChallengeDAO.selectData(mainActivity,mainActivity.rowPosition)
+
 
             participateTitle.text = challenge.name
             participateDate.text=challenge.progDate
             participateLocation.text = AddrDAO.selectData(mainActivity,challenge.addr_id).d_nm+" " + AddrDAO.selectData(mainActivity,challenge.addr_id).g_nm
             participateContent.text= challenge.content
 
-            val participantsTemp = ParticipantsDAO.selectByClgId(mainActivity,challenge.idx)
 
-            for (p in participantsTemp){
-                val user = UserInfoDAO.selectData(mainActivity,p.user_id)
-                if (user != null) {
-                    participantsList.add(user)
-                }
+            // 첼린지에 참여하는 유저 정보 가져오기
+            var participantsTemp = ParticipantsDAO.selectByClgId(mainActivity,challenge.idx)
+
+            //현재 로그인 한 유저가 참여 중인지 확인
+            var isParticipate = participantsTemp.filter { p -> p.user_id == userTemp!!.user_id }.size
+
+            Log.d("사용자","$isParticipate")
+
+            if (isParticipate>0){
+                btnParticipate.text = "참여 취소"
+                btnParticipate.setBackgroundResource(R.drawable.button_round_red)
             }
 
+            participantsList = participantsTemp.map { p -> UserInfoDAO.selectData(mainActivity,p.user_id)} as MutableList<UserInfo>
 
-            participateMaxUser.append("( ${participantsList.size} / ${challenge.maxUser} )")
+//            Log.d("참여자리스트",participantsTemp.map { p -> UserInfoDAO.selectData(mainActivity,p.user_id)}.toString())
+
+            participateMaxUser.text = ("참여자( ${participantsList.size} / ${challenge.maxUser} )")
+
+
+            btnParticipate.setOnClickListener {
+                val participant = ParticipantsClass(challenge.idx, userTemp!!.user_id)
+                if(isParticipate==0){
+                    ParticipantsDAO.insertData(mainActivity,participant)
+                    participantsTemp = ParticipantsDAO.selectByClgId(mainActivity,challenge.idx)
+                    isParticipate = 1
+                    btnParticipate.text = "참여 취소"
+                    btnParticipate.setBackgroundResource(R.drawable.button_round_red)
+                } else {
+                    ParticipantsDAO.deleteData(mainActivity,participant.clg_id,participant.user_id)
+                    participantsTemp = ParticipantsDAO.selectByClgId(mainActivity,challenge.idx)
+                    isParticipate =0
+                    btnParticipate.text = "참여"
+                    btnParticipate.setBackgroundResource(R.drawable.button_round)
+
+                }
+
+                participantsTemp = ParticipantsDAO.selectByClgId(mainActivity,challenge.idx)
+
+                participantsList = participantsTemp.map { p -> UserInfoDAO.selectData(mainActivity,p.user_id)} as MutableList<UserInfo>
+
+//            Log.d("참여자리스트",participantsTemp.map { p -> UserInfoDAO.selectData(mainActivity,p.user_id)}.toString())
+
+                participateMaxUser.text = ("참여자( ${participantsList.size} / ${challenge.maxUser} )")
+
+                // 리사이클러뷰 갱신
+                recyclerViewParticipate.adapter?.notifyDataSetChanged()
+
+            }
+
 
             recyclerViewParticipate.run {
                 adapter = ParticipateRecyclerViewAdapter()
                 layoutManager = LinearLayoutManager(mainActivity)
                 addItemDecoration(DividerItemDecoration(mainActivity, DividerItemDecoration.VERTICAL))
             }
+
+
 
         }
 
