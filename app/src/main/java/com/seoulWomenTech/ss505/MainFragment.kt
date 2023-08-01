@@ -42,13 +42,12 @@ class MainFragment : Fragment() {
             toolbarMain.run{
                 title = "Safety Seoul"
 
-                setNavigationIcon(R.drawable.menu_24)
+                
                 setNavigationOnClickListener {
                     // 네비게이션 뷰를 보여준다.
 
                 }
 
-                inflateMenu(R.menu.menu_main)
             }
         }
 

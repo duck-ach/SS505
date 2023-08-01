@@ -125,18 +125,34 @@ data class UserInfo(
     val email: String,
     val password: String,
     val role: Int,
-    val gender: Int,
-    val point: Int,
-    val phone: String,
-    val sns: String,
-    val address: String,
-    val date: String,
-    val image: String
+    val gender: Int?,
+    val point: Int?,
+    val phone: String?,
+    val sns: String?,
+    val address: String?,
+    val date: String?,
+    val image: String?,
+    val admin_office : String?,
+    val admin_rank : String?
 )
 
 data class CPIClass(
     val idx: Int,
     val clg_id: Int,
     val user_id: Int,
-    val url: String,
+    val url: String?,
+)
+
+data class SafetyData(
+    val idx: Int,
+    val adminId: Int,
+    val title: String?,
+    val content: String?,
+    val date: String?
+)
+
+data class SafetyImage(
+    val idx: Int,
+    val sdId: Int?,
+    val url: String?
 )
