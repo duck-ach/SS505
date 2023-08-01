@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import com.seoulWomenTech.ss505.databinding.FragmentCPIBinding
+import com.seoulWomenTech.ss505.databinding.FragmentMyChallengeBinding
 
 class CPIFragment : Fragment() {
     lateinit var fragmentCPIBinding: FragmentCPIBinding
@@ -59,6 +60,7 @@ class CPIFragment : Fragment() {
                         val cpiClass = CPIClass(0,cpiChallenge.idx,mainActivity.userPosition,fileName)
                         CpiDAO.insertData(mainActivity,cpiClass)
                         Snackbar.make(fragmentCPIBinding.root, "업로드가 완료되었습니다", Snackbar.LENGTH_SHORT).show()
+                        mainActivity.removeFragment(MainActivity.CPI_FRAGMENT)
                     }
 
                 }

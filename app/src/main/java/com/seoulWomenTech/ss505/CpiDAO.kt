@@ -31,32 +31,32 @@ class CpiDAO {
 
             val cursor = db.query("CPI", null, selection, args, null, null, null)
 
-            var CPIClass: CPIClass? = null
-            if (cursor.moveToFirst()) {
-                val idx1 = cursor.getColumnIndex("CPI_ID")
-                val idx2 = cursor.getColumnIndex("CLG_ID")
-                val idx3 = cursor.getColumnIndex("USER_ID")
-                val idx4 = cursor.getColumnIndex("CPI_URL")
+
+            cursor.moveToNext()
+            val idx1 = cursor.getColumnIndex("CPI_ID")
+            val idx2 = cursor.getColumnIndex("CLG_ID")
+            val idx3 = cursor.getColumnIndex("USER_ID")
+            val idx4 = cursor.getColumnIndex("CPI_URL")
 
 
-                val cpi_id = cursor.getInt(idx1)
-                val clg_id = cursor.getInt(idx2)
-                val user_id = cursor.getInt(idx3)
-                val cpi_url = cursor.getString(idx4)
+            val cpi_id = cursor.getInt(idx1)
+            val clg_id = cursor.getInt(idx2)
+            val user_id = cursor.getInt(idx3)
+            val cpi_url = cursor.getString(idx4)
 
 
-                CPIClass = CPIClass(
-                    cpi_id,
-                    clg_id,
-                    user_id,
-                    cpi_url,
+            var cpiClass = CPIClass(
+                cpi_id,
+                clg_id,
+                user_id,
+                cpi_url,
 
                 )
-            }
+            
 
             cursor.close()
             db.close()
-            return CPIClass
+            return cpiClass
         }
 
 
@@ -71,7 +71,7 @@ class CpiDAO {
 
             val dataList = mutableListOf<CPIClass>()
 
-            if (cursor.moveToFirst()) {
+            while (cursor.moveToNext()) {
                 val idx1 = cursor.getColumnIndex("CPI_ID")
                 val idx2 = cursor.getColumnIndex("CLG_ID")
                 val idx3 = cursor.getColumnIndex("USER_ID")
@@ -84,15 +84,15 @@ class CpiDAO {
                 val cpi_url = cursor.getString(idx4)
 
 
-                val CPIClass = CPIClass(
+                val cpiClass = CPIClass(
                     cpi_id,
                     clg_id,
                     user_id,
                     cpi_url,
 
-                )
+                    )
 
-                dataList.add(CPIClass)
+                dataList.add(cpiClass)
             }
 
             cursor.close()
@@ -109,10 +109,9 @@ class CpiDAO {
             val db = dbHelper.writableDatabase
 
             val cursor = db.query("CPI", null, selection, args, null, null, null)
-
             val dataList = mutableListOf<CPIClass>()
 
-            if (cursor.moveToFirst()) {
+            while (cursor.moveToNext()) {
                 val idx1 = cursor.getColumnIndex("CPI_ID")
                 val idx2 = cursor.getColumnIndex("CLG_ID")
                 val idx3 = cursor.getColumnIndex("USER_ID")
@@ -125,20 +124,23 @@ class CpiDAO {
                 val cpi_url = cursor.getString(idx4)
 
 
-                val CPIClass = CPIClass(
+                val cpiClass = CPIClass(
                     cpi_id,
                     clg_id,
                     user_id,
                     cpi_url,
 
-                )
+                    )
 
-                dataList.add(CPIClass)
+                Log.d("인증샷 쿼리", cpiClass.toString())
+
+                dataList.add(cpiClass)
             }
 
             cursor.close()
             db.close()
 
+            Log.d("인증샷 쿼리2", dataList.toString())
             return dataList
         }
 
@@ -158,24 +160,20 @@ class CpiDAO {
                 val idx3 = cursor.getColumnIndex("USER_ID")
                 val idx4 = cursor.getColumnIndex("CPI_URL")
 
-
-                Log.d("쿼리", idx1.toString())
-                Log.d("쿼리", idx2.toString())
-
                 val cpi_id = cursor.getInt(idx1)
                 val clg_id = cursor.getInt(idx2)
                 val user_id = cursor.getInt(idx3)
                 val cpi_url = cursor.getString(idx4)
 
 
-                val CPIClass = CPIClass(
+                val cpiClass = CPIClass(
                     cpi_id,
                     clg_id,
                     user_id,
                     cpi_url,
                 )
 
-                dataList.add(CPIClass)
+                dataList.add(cpiClass)
             }
 
             cursor.close()
