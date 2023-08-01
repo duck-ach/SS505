@@ -56,6 +56,8 @@ class CPIFragment : Fragment() {
                     val fileName = "image/cpi_${System.currentTimeMillis()}.jpg"
                     val fileRef = storage.reference.child(fileName)
                     fileRef.putFile(it.data?.data!!).addOnCompleteListener{
+                        val cpiClass = CPIClass(0,cpiChallenge.idx,mainActivity.userPosition,fileName)
+                        CpiDAO.insertData(mainActivity,cpiClass)
                         Snackbar.make(fragmentCPIBinding.root, "업로드가 완료되었습니다", Snackbar.LENGTH_SHORT).show()
                     }
 
@@ -68,9 +70,8 @@ class CPIFragment : Fragment() {
                 val mimeType = arrayOf("image/*")
                 newIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimeType)
                 cpiLauncher.launch(newIntent)
-//
-//                val cpiClass = CPIClass(0,cpiChallenge.idx,mainActivity.userPosition,)
-//                CpiDAO.insertData(mainActivity,cpiClass)
+
+
             }
         }
 

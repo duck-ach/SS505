@@ -139,6 +139,4 @@ data class CPIClass(
     val clg_id: Int,
     val user_id: Int,
     val url: String,
-    val un: String,
-    val cn: String
 )
