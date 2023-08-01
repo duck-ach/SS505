@@ -131,7 +131,9 @@ data class UserInfo(
     val sns: String,
     val address: String,
     val date: String,
-    val image: String
+    val image: String,
+    val admin_office : String,
+    val admin_rank : String
 )
 
 data class CPIClass(
