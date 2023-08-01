@@ -143,11 +143,16 @@ data class CPIClass(
     val url: String,
 )
 
-// SafetyData 엔티티 클래스 정의
 data class SafetyData(
     val idx: Int,
     val adminId: Int,
     val title: String,
     val content: String,
     val date: String
+)
+
+data class SafetyImage(
+    val idx: Int,
+    val sdId: Int,
+    val url: String
 )
