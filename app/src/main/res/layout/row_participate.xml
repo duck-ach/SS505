@@ -3,6 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/participateRowUserImg"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:src="@drawable/user_sample" />
+
     <TextView
         android:id="@+id/participateRowUserName"
         android:layout_width="match_parent"

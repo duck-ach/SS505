@@ -22,7 +22,7 @@ class UserInfoDAO {
             contentValues.put("USER_ADDR", data.address)
             contentValues.put("USER_DATE", data.date)
             contentValues.put("USER_IMG", data.image)
-            contentValues.put("admin_office", data.admin_office)
+            contentValues.put("ADMIN_OFFICE", data.admin_office)
             contentValues.put("admin_rank", data.admin_rank)
 
             val dbHelper = DBHelper(context)
@@ -38,9 +38,8 @@ class UserInfoDAO {
             val args = arrayOf("$userId")
             val cursor = dbHelper.writableDatabase.query("UserInfo", null, selection, args, null, null, null)
 
-            var userInfo: UserInfo? = null
 
-            if (cursor.moveToNext()) {
+                cursor.moveToNext()
                 val idx1 = cursor.getColumnIndex("USER_ID")
                 val idx2 = cursor.getColumnIndex("USER_NAME")
                 val idx3 = cursor.getColumnIndex("USER_EMAIL")
@@ -53,8 +52,8 @@ class UserInfoDAO {
                 val idx10 = cursor.getColumnIndex("USER_ADDR")
                 val idx11 = cursor.getColumnIndex("USER_DATE")
                 val idx12 = cursor.getColumnIndex("USER_IMG")
-                val idx13 = cursor.getColumnIndex("admin_office")
-                val idx14 = cursor.getColumnIndex("admin_rank")
+                val idx13 = cursor.getColumnIndex("ADMIN_OFFICE")
+                val idx14 = cursor.getColumnIndex("ADMIN_RANK")
 
                 val user_id = cursor.getInt(idx1)
                 val name = cursor.getString(idx2)
@@ -73,7 +72,7 @@ class UserInfoDAO {
 
                 val userInfo = UserInfo(user_id, name, email, password, role, gender, point, phone, sns, address, date, image, admin_office, admin_rank)
 
-            }
+
 
             cursor.close()
             dbHelper.close()
@@ -102,8 +101,8 @@ class UserInfoDAO {
                 val idx10 = cursor.getColumnIndex("USER_ADDR")
                 val idx11 = cursor.getColumnIndex("USER_DATE")
                 val idx12 = cursor.getColumnIndex("USER_IMG")
-                val idx13 = cursor.getColumnIndex("admin_office")
-                val idx14 = cursor.getColumnIndex("admin_rank")
+                val idx13 = cursor.getColumnIndex("ADMIN_OFFICE")
+                val idx14 = cursor.getColumnIndex("ADMIN_RANK")
 
                 val user_id = cursor.getInt(idx1)
                 val name = cursor.getString(idx2)
@@ -145,8 +144,8 @@ class UserInfoDAO {
             cv.put("USER_ADDR", userInfo.address)
             cv.put("USER_DATE", userInfo.date)
             cv.put("USER_IMG", userInfo.image)
-            cv.put("admin_office", userInfo.admin_office)
-            cv.put("admin_rank", userInfo.admin_rank)
+            cv.put("ADMIN_OFFICE", userInfo.admin_office)
+            cv.put("ADMIN_RANK", userInfo.admin_rank)
 
             val condition = "USER_ID = ?"
             val args = arrayOf("${userInfo.idx}")

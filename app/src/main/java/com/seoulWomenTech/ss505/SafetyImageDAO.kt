@@ -23,21 +23,28 @@ class SafetyImageDAO {
             val dbHelper = DBHelper(context)
             val selection = "SDI_ID = ?"
             val args = arrayOf("$sdiId")
-            val cursor = dbHelper.writableDatabase.query("SafetyImage", null, selection, args, null, null, null)
+            val cursor = dbHelper.writableDatabase.query(
+                "SafetyImage",
+                null,
+                selection,
+                args,
+                null,
+                null,
+                null
+            )
 
-            var safetyImage: SafetyImage? = null
 
-            if (cursor.moveToNext()) {
-                val idx1 = cursor.getColumnIndex("SDI_ID")
-                val idx2 = cursor.getColumnIndex("SD_ID")
-                val idx3 = cursor.getColumnIndex("SDI_URL")
+            cursor.moveToNext()
+            val idx1 = cursor.getColumnIndex("SDI_ID")
+            val idx2 = cursor.getColumnIndex("SD_ID")
+            val idx3 = cursor.getColumnIndex("SDI_URL")
 
-                val sdiId = cursor.getInt(idx1)
-                val sdId = cursor.getInt(idx2)
-                val sdiUrl = cursor.getString(idx3)
+            val sdiId = cursor.getInt(idx1)
+            val sdId = cursor.getInt(idx2)
+            val sdiUrl = cursor.getString(idx3)
 
-                safetyImage = SafetyImage(sdiId, sdId, sdiUrl)
-            }
+            val safetyImage = SafetyImage(sdiId, sdId, sdiUrl)
+
 
             cursor.close()
             dbHelper.close()
@@ -48,7 +55,8 @@ class SafetyImageDAO {
         // Read All : 모든 행을 가져온다
         fun selectAllData(context: Context): MutableList<SafetyImage> {
             val dbHelper = DBHelper(context)
-            val cursor = dbHelper.writableDatabase.query("SafetyImage", null, null, null, null, null, null)
+            val cursor =
+                dbHelper.writableDatabase.query("SafetyImage", null, null, null, null, null, null)
 
             val dataList = mutableListOf<SafetyImage>()
 

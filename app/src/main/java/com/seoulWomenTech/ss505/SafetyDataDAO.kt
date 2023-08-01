@@ -27,25 +27,31 @@ class SafetyDataDAO {
             val dbHelper = DBHelper(context)
             val selection = "SD_ID = ?"
             val args = arrayOf("$sdId")
-            val cursor = dbHelper.writableDatabase.query("SafetyData", null, selection, args, null, null, null)
+            val cursor = dbHelper.writableDatabase.query(
+                "SafetyData",
+                null,
+                selection,
+                args,
+                null,
+                null,
+                null
+            )
 
-            var safetyData: SafetyData? = null
+            cursor.moveToNext()
+            val idx1 = cursor.getColumnIndex("SD_ID")
+            val idx2 = cursor.getColumnIndex("ADMIN_ID")
+            val idx3 = cursor.getColumnIndex("SD_TITLE")
+            val idx4 = cursor.getColumnIndex("SD_CONTENT")
+            val idx5 = cursor.getColumnIndex("SD_DATE")
 
-            if (cursor.moveToNext()) {
-                val idx1 = cursor.getColumnIndex("SD_ID")
-                val idx2 = cursor.getColumnIndex("ADMIN_ID")
-                val idx3 = cursor.getColumnIndex("SD_TITLE")
-                val idx4 = cursor.getColumnIndex("SD_CONTENT")
-                val idx5 = cursor.getColumnIndex("SD_DATE")
+            val sdId = cursor.getInt(idx1)
+            val adminId = cursor.getInt(idx2)
+            val title = cursor.getString(idx3)
+            val content = cursor.getString(idx4)
+            val date = cursor.getString(idx5)
 
-                val sdId = cursor.getInt(idx1)
-                val adminId = cursor.getInt(idx2)
-                val title = cursor.getString(idx3)
-                val content = cursor.getString(idx4)
-                val date = cursor.getString(idx5)
+            val safetyData = SafetyData(sdId, adminId, title, content, date)
 
-                safetyData = SafetyData(sdId, adminId, title, content, date)
-            }
 
             cursor.close()
             dbHelper.close()
@@ -57,7 +63,8 @@ class SafetyDataDAO {
         fun selectAllData(context: Context): MutableList<SafetyData> {
             val dbHelper = DBHelper(context)
 
-            val cursor = dbHelper.writableDatabase.query("SafetyData", null, null, null, null, null, null)
+            val cursor =
+                dbHelper.writableDatabase.query("SafetyData", null, null, null, null, null, null)
 
             val dataList = mutableListOf<SafetyData>()
 
