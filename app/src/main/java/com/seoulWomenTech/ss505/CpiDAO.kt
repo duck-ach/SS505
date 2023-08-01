@@ -14,8 +14,6 @@ class CpiDAO {
             contentValues.put("CLG_ID", data.clg_id)
             contentValues.put("USER_ID", data.user_id)
             contentValues.put("CPI_URL", data.url)
-            contentValues.put("CPI_UN", data.un)
-            contentValues.put("CPI_CN", data.cn)
 
             val dbHelper = DBHelper(context)
             val db = dbHelper.writableDatabase
@@ -33,35 +31,32 @@ class CpiDAO {
 
             val cursor = db.query("CPI", null, selection, args, null, null, null)
 
-            var CPIClass: CPIClass? = null
-            if (cursor.moveToFirst()) {
-                val idx1 = cursor.getColumnIndex("CPI_ID")
-                val idx2 = cursor.getColumnIndex("CLG_ID")
-                val idx3 = cursor.getColumnIndex("USER_ID")
-                val idx4 = cursor.getColumnIndex("CPI_URL")
-                val idx5 = cursor.getColumnIndex("CPI_UN")
-                val idx6 = cursor.getColumnIndex("CPI_CN")
 
-                val cpi_id = cursor.getInt(idx1)
-                val clg_id = cursor.getInt(idx2)
-                val user_id = cursor.getInt(idx3)
-                val cpi_url = cursor.getString(idx4)
-                val cpi_un = cursor.getString(idx5)
-                val cpi_cn = cursor.getString(idx6)
+            cursor.moveToNext()
+            val idx1 = cursor.getColumnIndex("CPI_ID")
+            val idx2 = cursor.getColumnIndex("CLG_ID")
+            val idx3 = cursor.getColumnIndex("USER_ID")
+            val idx4 = cursor.getColumnIndex("CPI_URL")
 
-                CPIClass = CPIClass(
-                    cpi_id,
-                    clg_id,
-                    user_id,
-                    cpi_url,
-                    cpi_un,
-                    cpi_cn
+
+            val cpi_id = cursor.getInt(idx1)
+            val clg_id = cursor.getInt(idx2)
+            val user_id = cursor.getInt(idx3)
+            val cpi_url = cursor.getString(idx4)
+
+
+            var cpiClass = CPIClass(
+                cpi_id,
+                clg_id,
+                user_id,
+                cpi_url,
+
                 )
-            }
+
 
             cursor.close()
             db.close()
-            return CPIClass
+            return cpiClass
         }
 
 
@@ -76,31 +71,28 @@ class CpiDAO {
 
             val dataList = mutableListOf<CPIClass>()
 
-            if (cursor.moveToFirst()) {
+            while (cursor.moveToNext()) {
                 val idx1 = cursor.getColumnIndex("CPI_ID")
                 val idx2 = cursor.getColumnIndex("CLG_ID")
                 val idx3 = cursor.getColumnIndex("USER_ID")
                 val idx4 = cursor.getColumnIndex("CPI_URL")
-                val idx5 = cursor.getColumnIndex("CPI_UN")
-                val idx6 = cursor.getColumnIndex("CPI_CN")
+
 
                 val cpi_id = cursor.getInt(idx1)
                 val clg_id = cursor.getInt(idx2)
                 val user_id = cursor.getInt(idx3)
                 val cpi_url = cursor.getString(idx4)
-                val cpi_un = cursor.getString(idx5)
-                val cpi_cn = cursor.getString(idx6)
 
-                val CPIClass = CPIClass(
+
+                val cpiClass = CPIClass(
                     cpi_id,
                     clg_id,
                     user_id,
                     cpi_url,
-                    cpi_un,
-                    cpi_cn
-                )
 
-                dataList.add(CPIClass)
+                    )
+
+                dataList.add(cpiClass)
             }
 
             cursor.close()
@@ -117,34 +109,31 @@ class CpiDAO {
             val db = dbHelper.writableDatabase
 
             val cursor = db.query("CPI", null, selection, args, null, null, null)
-
             val dataList = mutableListOf<CPIClass>()
 
-            if (cursor.moveToFirst()) {
+            while (cursor.moveToNext()) {
                 val idx1 = cursor.getColumnIndex("CPI_ID")
                 val idx2 = cursor.getColumnIndex("CLG_ID")
                 val idx3 = cursor.getColumnIndex("USER_ID")
                 val idx4 = cursor.getColumnIndex("CPI_URL")
-                val idx5 = cursor.getColumnIndex("CPI_UN")
-                val idx6 = cursor.getColumnIndex("CPI_CN")
+
 
                 val cpi_id = cursor.getInt(idx1)
                 val clg_id = cursor.getInt(idx2)
                 val user_id = cursor.getInt(idx3)
                 val cpi_url = cursor.getString(idx4)
-                val cpi_un = cursor.getString(idx5)
-                val cpi_cn = cursor.getString(idx6)
 
-                val CPIClass = CPIClass(
+
+                val cpiClass = CPIClass(
                     cpi_id,
                     clg_id,
                     user_id,
                     cpi_url,
-                    cpi_un,
-                    cpi_cn
-                )
 
-                dataList.add(CPIClass)
+                    )
+
+
+                dataList.add(cpiClass)
             }
 
             cursor.close()
@@ -168,29 +157,21 @@ class CpiDAO {
                 val idx2 = cursor.getColumnIndex("CLG_ID")
                 val idx3 = cursor.getColumnIndex("USER_ID")
                 val idx4 = cursor.getColumnIndex("CPI_URL")
-                val idx5 = cursor.getColumnIndex("CPI_UN")
-                val idx6 = cursor.getColumnIndex("CPI_CN")
-
-                Log.d("쿼리", idx1.toString())
-                Log.d("쿼리", idx2.toString())
 
                 val cpi_id = cursor.getInt(idx1)
                 val clg_id = cursor.getInt(idx2)
                 val user_id = cursor.getInt(idx3)
                 val cpi_url = cursor.getString(idx4)
-                val cpi_un = cursor.getString(idx5)
-                val cpi_cn = cursor.getString(idx6)
 
-                val CPIClass = CPIClass(
+
+                val cpiClass = CPIClass(
                     cpi_id,
                     clg_id,
                     user_id,
                     cpi_url,
-                    cpi_un,
-                    cpi_cn
                 )
 
-                dataList.add(CPIClass)
+                dataList.add(cpiClass)
             }
 
             cursor.close()
@@ -205,8 +186,6 @@ class CpiDAO {
             cv.put("CLG_ID", obj.clg_id)
             cv.put("USER_ID", obj.user_id)
             cv.put("CPI_URL", obj.url)
-            cv.put("CPI_UN", obj.un)
-            cv.put("CPI_CN", obj.cn)
 
             val condition = "CPI_ID = ?"
             val args = arrayOf(obj.idx.toString())

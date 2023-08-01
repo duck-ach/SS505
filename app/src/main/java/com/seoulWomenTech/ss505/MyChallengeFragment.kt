@@ -1,6 +1,7 @@
 package com.seoulWomenTech.ss505
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,8 +34,12 @@ class MyChallengeFragment : Fragment() {
 
         var challengeParticipate = ParticipantsDAO.selectByUserId(mainActivity, mainActivity.userPosition)
         challengeList = challengeParticipate.map { p ->ChallengeDAO.selectData(mainActivity,p.clg_id) } as MutableList
+        Log.d("인증샷챌린지",challengeList.toString())
 
         val cpiChallengeList = CpiDAO.selectDataByUserId(mainActivity,mainActivity.userPosition).map{ cpi -> cpi.clg_id } as MutableList<Int>
+
+        Log.d("인증샷모두",CpiDAO.selectAllData(mainActivity).toString())
+        Log.d("인증샷",CpiDAO.selectDataByUserId(mainActivity,2).toString())
 
         // cpiChallengList에 challenge 번호가 없는 것들은 인증샷 제출하지 않은 것이라 active로 제출 된 것은 disabled로
         challengeActiveList = challengeList.filterNot { it.idx in cpiChallengeList } as MutableList<ChallengeClass>
@@ -149,7 +154,9 @@ class MyChallengeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-//        challengeList = ChallengeDAO.selectAllData(mainActivity)
+        val cpiChallengeList = CpiDAO.selectDataByUserId(mainActivity,mainActivity.userPosition).map{ cpi -> cpi.clg_id } as MutableList<Int>
+        challengeActiveList = challengeList.filterNot { it.idx in cpiChallengeList } as MutableList<ChallengeClass>
+        challengeDisabledList = challengeList.filter { it.idx in cpiChallengeList } as MutableList<ChallengeClass>
 
         // 리사이클러뷰 갱신
         fragmentMyChallengeBinding.recyclerViewMyChallengeActive.adapter?.notifyDataSetChanged()

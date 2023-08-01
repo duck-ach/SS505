@@ -1,6 +1,7 @@
 package com.seoulWomenTech.ss505
 
 
+import android.Manifest
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -10,6 +11,12 @@ import com.seoulWomenTech.ss505.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var activityMainBinding: ActivityMainBinding
+
+    val permissionList = arrayOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.ACCESS_MEDIA_LOCATION,
+        Manifest.permission.INTERNET
+    )
 
     val userPosition = 2
     // 사용자가 누른 항목 번호
@@ -42,6 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
+        requestPermissions(permissionList,0)
         replaceFragment(MAIN_FRAGMENT, false, null)
 
     }
@@ -131,6 +139,4 @@ data class CPIClass(
     val clg_id: Int,
     val user_id: Int,
     val url: String,
-    val un: String,
-    val cn: String
 )
