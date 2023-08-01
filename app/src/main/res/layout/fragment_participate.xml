@@ -97,13 +97,13 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/participateAdminImg"
                     android:layout_width="46dp"
                     android:layout_height="46dp"
                     android:src="@drawable/police1" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/participateAdminName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"

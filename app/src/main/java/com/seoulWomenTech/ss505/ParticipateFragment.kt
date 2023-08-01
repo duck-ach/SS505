@@ -82,8 +82,20 @@ class ParticipateFragment : Fragment() {
 
 //            Log.d("참여자리스트",participantsTemp.map { p -> UserInfoDAO.selectData(mainActivity,p.user_id)}.toString())
 
-            participateMaxUser.text = ("참여자( ${participantsList.size} / ${challenge.maxUser} )")
+            val challengeAdmin = UserInfoDAO.selectData(mainActivity,challenge.admin_id)
 
+            Log.d("관리자",UserInfoDAO.selectData(mainActivity,challenge.admin_id).toString())
+
+            val challengeAdminImgSrc = mainActivity.resources.getIdentifier(challengeAdmin?.image, "drawable", mainActivity.packageName)
+            if(challengeAdminImgSrc!=null){
+                participateAdminImg.setImageResource(challengeAdminImgSrc)
+            }
+
+            val crownUnicode = 0x1F451
+            val emojiText = "${String(Character.toChars(crownUnicode))}"
+            participateAdminName.text = "$emojiText ${challengeAdmin?.name}"
+
+            participateMaxUser.text = ("참여자( ${participantsList.size} / ${challenge.maxUser} )")
 
             btnParticipate.setOnClickListener {
                 val participant = ParticipantsClass(challenge.idx, userTemp!!.idx)
@@ -110,7 +122,7 @@ class ParticipateFragment : Fragment() {
 
                 participateMaxUser.text = ("참여자( ${participantsList.size} / ${challenge.maxUser} )")
 
-                // 리사이클러뷰 갱신
+                // 리사이클러뷰 갱신자
                 recyclerViewParticipate.adapter?.notifyDataSetChanged()
 
             }
