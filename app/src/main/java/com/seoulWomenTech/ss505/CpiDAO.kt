@@ -52,7 +52,7 @@ class CpiDAO {
                 cpi_url,
 
                 )
-            
+
 
             cursor.close()
             db.close()
@@ -132,7 +132,6 @@ class CpiDAO {
 
                     )
 
-                Log.d("인증샷 쿼리", cpiClass.toString())
 
                 dataList.add(cpiClass)
             }
@@ -140,7 +139,6 @@ class CpiDAO {
             cursor.close()
             db.close()
 
-            Log.d("인증샷 쿼리2", dataList.toString())
             return dataList
         }
 
