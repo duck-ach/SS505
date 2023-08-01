@@ -28,13 +28,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="15dp">
 
             <ImageView
                 android:id="@+id/participateImg"
                 android:layout_width="match_parent"
                 android:layout_height="158dp"
-                android:scaleType="fitCenter"
+                android:background="@drawable/image_round"
+                android:scaleType="fitXY"
                 android:src="@drawable/sample_img" />
 
             <TextView
@@ -44,7 +45,8 @@
                 android:layout_marginTop="10dp"
                 android:text="ParticipateFragment"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/participateDate"
@@ -75,17 +77,41 @@
 
             <android.widget.Button
                 android:id="@+id/btnParticipate"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/button_round"
-                android:text="참여"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:shadowColor="#000000"
                 android:shadowDx="0"
                 android:shadowDy="0"
                 android:shadowRadius="5"
-                android:textColor="@color/white" />
+                android:text="참여하기"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:src="@drawable/police1" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:text="TextView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/white" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -98,8 +124,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="참여자"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#FFFFFF" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewParticipate"
