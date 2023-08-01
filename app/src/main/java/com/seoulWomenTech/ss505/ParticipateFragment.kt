@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -41,14 +42,14 @@ class ParticipateFragment : Fragment() {
             toolbarParticipate.run{
                 title = "Safety Seoul"
 
-                setNavigationIcon(R.drawable.menu_24)
+                
                 setNavigationOnClickListener {
                     // 네비게이션 뷰를 보여준다.
 
 
                 }
 
-                inflateMenu(R.menu.menu_main)
+
             }
 
             val imgSrc = mainActivity.resources.getIdentifier(challenge.img, "drawable", mainActivity.packageName)
@@ -58,11 +59,14 @@ class ParticipateFragment : Fragment() {
                 participateImg.setImageResource(imgSrc)
             }
 
+            participateImg.clipToOutline = true
+
 
             participateTitle.text = challenge.name
-            participateDate.text=challenge.progDate
-            participateLocation.text = AddrDAO.selectData(mainActivity,challenge.addr_id).d_nm+" " + AddrDAO.selectData(mainActivity,challenge.addr_id).g_nm
-            participateContent.text= challenge.content
+            participateDate.append("${challenge.progDate} ${challenge.progTime}")
+            participateMaxUserText.append("${challenge.maxUser}명")
+            participateLocation.append(AddrDAO.selectData(mainActivity,challenge.addr_id).d_nm+" " + AddrDAO.selectData(mainActivity,challenge.addr_id).g_nm)
+            participateContent.append(challenge.content)
 
 
             // 첼린지에 참여하는 유저 정보 가져오기
@@ -144,9 +148,11 @@ class ParticipateFragment : Fragment() {
     inner class ParticipateRecyclerViewAdapter : RecyclerView.Adapter<ParticipateRecyclerViewAdapter.ParticipateViewHolderClass>(){
 
         inner class ParticipateViewHolderClass(rowParticipateBinding: RowParticipateBinding) : RecyclerView.ViewHolder(rowParticipateBinding.root){
+            var textViewRowParticipateUserImg : ImageView
             var textViewRowParticipateUserName : TextView
 
             init {
+                textViewRowParticipateUserImg = rowParticipateBinding.participateRowUserImg
                 textViewRowParticipateUserName  = rowParticipateBinding.participateRowUserName
             }
 
@@ -170,6 +176,13 @@ class ParticipateFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ParticipateViewHolderClass, position: Int) {
+            val participantImgSrc = mainActivity.resources.getIdentifier(participantsList[position].image, "drawable", mainActivity.packageName)
+
+//            Log.d("이미지",imgSrc.)
+            if(participantImgSrc!=null){
+                holder.textViewRowParticipateUserImg.setImageResource(participantImgSrc)
+            }
+
             holder.textViewRowParticipateUserName.text = participantsList[position].name
         }
     }

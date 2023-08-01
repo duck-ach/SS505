@@ -3,20 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".ParticipateFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarParticipate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
-            android:theme="@style/Theme.SS505.Toolbar" />
+            android:theme="@style/Theme.SS505.Toolbar"
+            app:navigationIcon="@drawable/menu_24"
+            app:navigationIconTint="@color/white"
+            app:titleCentered="true"
+            app:titleTextColor="@color/white" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -26,7 +31,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="15dp">
 
@@ -35,14 +40,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="158dp"
                 android:background="@drawable/image_round"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@drawable/sample_img" />
 
             <TextView
                 android:id="@+id/participateTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:text="ParticipateFragment"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="#FFFFFF"
@@ -53,7 +58,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="TextView"
+                android:text="날짜 : "
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/participateMaxUserText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="참여 인원 : "
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#FFFFFF" />
 
@@ -62,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="TextView"
+                android:text="만남장소 : "
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#FFFFFF" />
 
@@ -71,7 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="TextView"
+                android:text="참여 내용 : "
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/white" />
 
@@ -80,7 +94,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/button_round"
                 android:shadowColor="#000000"
                 android:shadowDx="0"
@@ -98,19 +113,21 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/participateAdminImg"
-                    android:layout_width="46dp"
-                    android:layout_height="46dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
                     android:src="@drawable/police1" />
 
                 <TextView
                     android:id="@+id/participateAdminName"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
                     android:text="TextView"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="@color/white" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
