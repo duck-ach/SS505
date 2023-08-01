@@ -10,10 +10,12 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isInvisible
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import com.seoulWomenTech.ss505.databinding.FragmentCPIBinding
 import com.seoulWomenTech.ss505.databinding.FragmentMyChallengeBinding
+import kotlinx.coroutines.delay
 
 class CPIFragment : Fragment() {
     lateinit var fragmentCPIBinding: FragmentCPIBinding
@@ -29,7 +31,7 @@ class CPIFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         val cpiChallenge = ChallengeDAO.selectData(mainActivity,mainActivity.rowPosition)
-
+        val userInfo = UserInfoDAO.selectData(mainActivity,mainActivity.userPosition)
 
         fragmentCPIBinding.run {
             toolbarCPI.run{
@@ -43,6 +45,12 @@ class CPIFragment : Fragment() {
 
                 inflateMenu(R.menu.menu_main)
             }
+            progressBarCPI.run {
+                visibility = View.GONE
+
+            }
+
+
             CPITitle.text = cpiChallenge.name
             CPIDate.append("${cpiChallenge.progDate} ${cpiChallenge.progTime}")
             CPIMaxUser.append("${cpiChallenge.maxUser}명")
@@ -54,9 +62,12 @@ class CPIFragment : Fragment() {
             cpiLauncher = registerForActivityResult(contract1){
                 if(it?.resultCode == AppCompatActivity.RESULT_OK){
                     val storage = FirebaseStorage.getInstance()
-                    val fileName = "image/cpi_${System.currentTimeMillis()}.jpg"
+
+                    //해당 유저 번호 폴더 안 챌린지 번호 폴더 안 cpi 폴더에 저장하게 경로 설정
+                    val fileName = "${userInfo?.idx}/${cpiChallenge.idx}/cpi/${System.currentTimeMillis()}.jpg"
                     val fileRef = storage.reference.child(fileName)
                     fileRef.putFile(it.data?.data!!).addOnCompleteListener{
+                        fragmentCPIBinding.progressBarCPI.visibility=View.VISIBLE
                         val cpiClass = CPIClass(0,cpiChallenge.idx,mainActivity.userPosition,fileName)
                         CpiDAO.insertData(mainActivity,cpiClass)
                         Snackbar.make(fragmentCPIBinding.root, "업로드가 완료되었습니다", Snackbar.LENGTH_SHORT).show()
@@ -72,7 +83,6 @@ class CPIFragment : Fragment() {
                 val mimeType = arrayOf("image/*")
                 newIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimeType)
                 cpiLauncher.launch(newIntent)
-
 
             }
         }
