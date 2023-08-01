@@ -29,7 +29,7 @@ class CPIFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         val cpiChallenge = ChallengeDAO.selectData(mainActivity,mainActivity.rowPosition)
-
+        val userInfo = UserInfoDAO.selectData(mainActivity,mainActivity.userPosition)
 
         fragmentCPIBinding.run {
             toolbarCPI.run{
@@ -54,7 +54,9 @@ class CPIFragment : Fragment() {
             cpiLauncher = registerForActivityResult(contract1){
                 if(it?.resultCode == AppCompatActivity.RESULT_OK){
                     val storage = FirebaseStorage.getInstance()
-                    val fileName = "image/cpi_${System.currentTimeMillis()}.jpg"
+
+                    //해당 유저 번호 폴더 안 cpi 폴더에 저장하게 경로 설정
+                    val fileName = "${userInfo?.idx}/cpi/${System.currentTimeMillis()}.jpg"
                     val fileRef = storage.reference.child(fileName)
                     fileRef.putFile(it.data?.data!!).addOnCompleteListener{
                         val cpiClass = CPIClass(0,cpiChallenge.idx,mainActivity.userPosition,fileName)
@@ -72,7 +74,6 @@ class CPIFragment : Fragment() {
                 val mimeType = arrayOf("image/*")
                 newIntent.putExtra(Intent.EXTRA_MIME_TYPES, mimeType)
                 cpiLauncher.launch(newIntent)
-
 
             }
         }
