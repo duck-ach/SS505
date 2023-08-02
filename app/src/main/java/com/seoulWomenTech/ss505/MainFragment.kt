@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -41,12 +42,13 @@ class MainFragment : Fragment() {
         fragmentMainBinding.run {
             toolbarMain.run{
                 title = "Safety Seoul"
-
                 
                 setNavigationOnClickListener {
                     // 네비게이션 뷰를 보여준다.
 
                 }
+
+
 
             }
         }

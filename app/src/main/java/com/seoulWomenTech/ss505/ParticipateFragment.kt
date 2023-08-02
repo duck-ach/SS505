@@ -65,7 +65,7 @@ class ParticipateFragment : Fragment() {
             participateTitle.text = challenge.name
             participateDate.append("${challenge.progDate} ${challenge.progTime}")
             participateMaxUserText.append("${challenge.maxUser}명")
-            participateLocation.append(AddrDAO.selectData(mainActivity,challenge.addr_id).d_nm+" " + AddrDAO.selectData(mainActivity,challenge.addr_id).g_nm)
+            participateLocation.append(challenge.location)
             participateContent.append(challenge.content)
 
 
