@@ -1,5 +1,7 @@
 package com.seoulWomenTech.ss505
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -116,6 +118,7 @@ class MyChallengeFragment : Fragment() {
             return challengeActiveList.size
         }
 
+        @RequiresApi(Build.VERSION_CODES.O)
         override fun onBindViewHolder(holder: MyChallengeFragment.MyChallengeActiveRecyclerViewAdapter.MyChallengeActiveViewHolderClass, position: Int) {
 
             holder.textViewRowChallengeDeadLine.text = challengeActiveList[position].progDate
@@ -160,7 +163,12 @@ class MyChallengeFragment : Fragment() {
                 textViewRowChallengeLocation = rowChallengeBinding.challengeRowLocation
                 textViewRowChallengeParticipant = rowChallengeBinding.challengeRowParticipant
 
-                challengeBtnParticipate.text = "인증샷 제출 완료"
+                challengeBtnParticipate.run {
+                    text = "제출 완료"
+                    backgroundTintList = ColorStateList.valueOf(Color.parseColor("#5D5F73"))
+
+                }
+
 
 
             }

@@ -79,7 +79,7 @@ class ParticipateFragment : Fragment() {
 
             if (isParticipate>0){
                 btnParticipate.text = "참여 취소"
-                btnParticipate.setBackgroundResource(R.drawable.button_round_red)
+                btnParticipate.setBackgroundResource(R.drawable.button_round_disabled)
             }
 
             participantsList = participantsTemp.map { p -> UserInfoDAO.selectData(mainActivity,p.user_id)} as MutableList<UserInfo>
@@ -108,7 +108,7 @@ class ParticipateFragment : Fragment() {
                     participantsTemp = ParticipantsDAO.selectByClgId(mainActivity,challenge.idx)
                     isParticipate = 1
                     btnParticipate.text = "참여 취소"
-                    btnParticipate.setBackgroundResource(R.drawable.button_round_red)
+                    btnParticipate.setBackgroundResource(R.drawable.button_round_disabled)
                 } else {
                     ParticipantsDAO.deleteData(mainActivity,participant.clg_id,participant.user_id)
                     participantsTemp = ParticipantsDAO.selectByClgId(mainActivity,challenge.idx)
