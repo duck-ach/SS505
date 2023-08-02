@@ -1,6 +1,8 @@
 package com.seoulWomenTech.ss505
 
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
@@ -14,8 +16,7 @@ import androidx.core.view.isInvisible
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import com.seoulWomenTech.ss505.databinding.FragmentCPIBinding
-import com.seoulWomenTech.ss505.databinding.FragmentMyChallengeBinding
-import kotlinx.coroutines.delay
+
 
 class CPIFragment : Fragment() {
     lateinit var fragmentCPIBinding: FragmentCPIBinding
@@ -45,10 +46,7 @@ class CPIFragment : Fragment() {
 
 
             }
-            progressBarCPI.run {
-                visibility = View.GONE
 
-            }
 
 
             CPITitle.text = cpiChallenge.name
@@ -64,14 +62,19 @@ class CPIFragment : Fragment() {
                     val storage = FirebaseStorage.getInstance()
 
                     //해당 유저 번호 폴더 안 챌린지 번호 폴더 안 cpi 폴더에 저장하게 경로 설정
-                    val fileName = "${userInfo?.idx}/${cpiChallenge.idx}/cpi/${System.currentTimeMillis()}.jpg"
+                    val fileName = "cpi/${cpiChallenge.idx}/${mainActivity.userPosition}_${System.currentTimeMillis()}.jpg"
                     val fileRef = storage.reference.child(fileName)
                     fileRef.putFile(it.data?.data!!).addOnCompleteListener{
-                        fragmentCPIBinding.progressBarCPI.visibility=View.VISIBLE
+
                         val cpiClass = CPIClass(0,cpiChallenge.idx,mainActivity.userPosition,fileName)
                         CpiDAO.insertData(mainActivity,cpiClass)
                         Snackbar.make(fragmentCPIBinding.root, "업로드가 완료되었습니다", Snackbar.LENGTH_SHORT).show()
-                        mainActivity.removeFragment(MainActivity.CPI_FRAGMENT)
+                        fragmentCPIBinding.btnCPI.run {
+                            text = "제출 완료"
+                            setBackgroundResource(R.drawable.button_round_disabled)
+                            isClickable = false
+                        }
+
                     }
 
                 }

@@ -26,11 +26,6 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Linear progress indicator -->
-    <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:id="@+id/progressBarCPI"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:indeterminate="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,13 +39,15 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/CPIDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="날짜 : "
+            android:layout_marginTop="10dp"
+            android:text="일시 : "
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/white" />
 
@@ -58,6 +55,7 @@
             android:id="@+id/CPIMaxUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="참여인원 : "
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/white" />
@@ -66,6 +64,7 @@
             android:id="@+id/CPILocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="만남장소 : "
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/white" />
@@ -74,15 +73,28 @@
             android:id="@+id/CPIContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="참여내용 : "
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/white" />
 
-        <Button
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="175dp"
+            android:layout_height="236dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/image_search_24" />
+
+        <android.widget.Button
             android:id="@+id/btnCPI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="제출하기" />
+            android:background="@drawable/button_round"
+            android:shadowColor="@color/black"
+            android:text="제출하기"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>
