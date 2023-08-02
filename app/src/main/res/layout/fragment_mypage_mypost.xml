@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#2F3659"
+    >
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:orientation="vertical">
+
+                                                <TextView
+                                                    android:id="@+id/mp_title_obj"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="8dp"
+                                                    android:text="[ 게시판종류 표시 ]"
+                                                    android:textStyle="bold"
+                                                    android:textSize="20dp"
+                                                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                                                    android:textColor="?android:attr/textColorSecondary" />
+
+                                                <TextView
+                                                    android:id="@+id/challengeRowTitle"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="타이틀 입니다"
+                                                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginTop="16dp"
+                                            android:orientation="vertical">
+
+                                                <TextView
+                                                    android:id="@+id/challengeRowDate"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="서포팅 타이틀 입니다"
+                                                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                                                    android:textColor="?android:attr/textColorSecondary" />
+
+                                                <TextView
+                                                    android:id="@+id/challengeRowLocation"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="서포팅 타이틀 입니다"
+                                                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                                                    android:textColor="?android:attr/textColorSecondary" />
+
+                                                <TextView
+                                                    android:id="@+id/challengeRowParticipant"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="서포팅 타이틀 입니다"
+                                                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                                                    android:textColor="?android:attr/textColorSecondary" />
+
+                                                <LinearLayout
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="right"
+                                                    >
+                                                        <com.google.android.material.button.MaterialButton
+                                                            android:id="@+id/mp_btn_mod"
+                                                            style="@style/ThemeOverlay.Material3.Button.ElevatedButton"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:textAlignment="center"
+                                                            android:text="수정"
+                                                            android:backgroundTint="#E4D5F2"
+                                                            />
+
+                                                        <com.google.android.material.button.MaterialButton
+                                                            android:id="@+id/mp_btn_del"
+                                                            style="@style/ThemeOverlay.Material3.Button.ElevatedButton"
+                                                            android:layout_width="wrap_content"
+                                                            android:layout_height="wrap_content"
+                                                            android:text="삭제"
+                                                            android:textAlignment="center"
+                                                            android:backgroundTint="#8F88BF"
+                                                            />
+
+                                                </LinearLayout>
+                                        </LinearLayout>
+
+                                </LinearLayout>
+
+                        </LinearLayout>
+
+                </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
