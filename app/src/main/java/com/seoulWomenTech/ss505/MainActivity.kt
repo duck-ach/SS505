@@ -37,8 +37,7 @@ class MainActivity : AppCompatActivity() {
 
 
     companion object {
-        val ONBOARDING_FRAGMENT = "OnboardingFragment"
-        val INTRO_FRAGMENT = "IntroFragment" // 인트로(온보딩) 화면
+        val ONBOARDING_FRAGMENT = "OnboardingFragment" // 온보딩 화면
         val MAIN_FRAGMENT = "MainFragment" //  메인 화면
         val PARTICIPATE_FRAGMENT = "ParticipateFragment" //  참여 화면
         val CPI_FRAGMENT = "CPIFragment" //  인증샷 제출 화면
@@ -90,7 +89,6 @@ class MainActivity : AppCompatActivity() {
 
         newFragment = when(name){
             ONBOARDING_FRAGMENT -> OnboardingFragment()
-//            INTRO_FRAGMENT ->IntroFragment()
             MAIN_FRAGMENT -> MainFragment()
             PARTICIPATE_FRAGMENT -> ParticipateFragment()
             CPI_FRAGMENT -> CPIFragment()

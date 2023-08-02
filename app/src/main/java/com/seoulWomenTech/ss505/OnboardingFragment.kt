@@ -56,6 +56,16 @@ class OnboardingFragment : Fragment() {
                 "",
                 "",
                 R.color.white,
+                R.drawable.sdi_default
+
+            )
+        )
+
+        onboardingData.add(
+            PaperOnboardingPage(
+                "",
+                "",
+                R.color.white,
                 R.drawable.sdi_1
 
             )
