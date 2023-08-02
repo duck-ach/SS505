@@ -1,6 +1,7 @@
 package com.seoulWomenTech.ss505
 
 
+import OnboardingFragment
 import android.Manifest
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
 
     companion object {
+        val ONBOARDING_FRAGMENT = "OnboardingFragment"
         val INTRO_FRAGMENT = "IntroFragment" // 인트로(온보딩) 화면
         val MAIN_FRAGMENT = "MainFragment" //  메인 화면
         val PARTICIPATE_FRAGMENT = "ParticipateFragment" //  참여 화면
@@ -54,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
         requestPermissions(permissionList,0)
 //        replaceFragment(MAIN_FRAGMENT, false, null)
-        replaceFragment(INTRO_FRAGMENT, false, null)
+        replaceFragment(ONBOARDING_FRAGMENT, false, null)
 
 
     }
@@ -87,7 +89,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         newFragment = when(name){
-            INTRO_FRAGMENT ->IntroFragment()
+            ONBOARDING_FRAGMENT -> OnboardingFragment()
+//            INTRO_FRAGMENT ->IntroFragment()
             MAIN_FRAGMENT -> MainFragment()
             PARTICIPATE_FRAGMENT -> ParticipateFragment()
             CPI_FRAGMENT -> CPIFragment()
