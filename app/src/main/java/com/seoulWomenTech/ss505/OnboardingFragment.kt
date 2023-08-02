@@ -14,8 +14,7 @@ import com.seoulWomenTech.ss505.databinding.ItemOnboardingSlideBinding
 
 class OnboardingFragment : Fragment() {
 
-    private lateinit var binding: FragmentOnboardingBinding
-    private lateinit var viewPager: ViewPager2
+    lateinit var fragmentOnboardingBinding: FragmentOnboardingBinding
     lateinit var mainActivity: MainActivity
 
     override fun onCreateView(
@@ -23,29 +22,38 @@ class OnboardingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         mainActivity = activity as MainActivity
-        binding = FragmentOnboardingBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+        fragmentOnboardingBinding = FragmentOnboardingBinding.inflate(layoutInflater)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        viewPager = binding.viewPagerOnboarding
 
         val onboardingData = createOnboardingData()
         val onboardingAdapter = OnboardingAdapter(onboardingData)
-        viewPager.adapter = onboardingAdapter
+        fragmentOnboardingBinding.run {
 
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                // 마지막 페이지인지 확인
-                if (position == onboardingData.size - 1) {
-                    binding.btnNext.visibility = View.VISIBLE
-                } else {
-                    binding.btnNext.visibility = View.GONE
-                }
+            btnNext.setOnClickListener {
+                mainActivity.replaceFragment(MainActivity.MAIN_FRAGMENT,true,null)
             }
-        })
+
+            viewPagerOnboarding.run {
+                adapter = onboardingAdapter
+                registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                    override fun onPageSelected(position: Int) {
+                        // 마지막 페이지인지 확인
+                        if (position == onboardingData.size - 1) {
+                            fragmentOnboardingBinding.btnNext.visibility = View.VISIBLE
+                        } else {
+                            fragmentOnboardingBinding.btnNext.visibility = View.GONE
+                        }
+                    }
+                })
+            }
+
+
+        }
+
+
+
+
+        return fragmentOnboardingBinding.root
     }
 
     private fun createOnboardingData(): List<PaperOnboardingPage> {
