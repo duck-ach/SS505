@@ -72,6 +72,52 @@ class ChallengeDAO {
             return challengeClass
         }
 
+        // Read By ADDR_ID
+        fun selectByAddrID(context: Context, addr_id: Int): MutableList<ChallengeClass> {
+            val dbHelper = DBHelper(context)
+            val selection = "ADDR_ID = ?"
+            val args = arrayOf("$addr_id")
+            val cursor = dbHelper.writableDatabase.query("Challenge", null, selection, args, null, null, null)
+
+            val dataList = mutableListOf<ChallengeClass>()
+
+            while (cursor.moveToNext()) {
+                val idx1 = cursor.getColumnIndex("CLG_ID")
+                val idx2 = cursor.getColumnIndex("ADMIN_ID")
+                val idx3 = cursor.getColumnIndex("ADDR_ID")
+                val idx4 = cursor.getColumnIndex("CLG_NM")
+                val idx5 = cursor.getColumnIndex("CLG_CONTENT")
+                val idx6 = cursor.getColumnIndex("CLG_POST_DATE")
+                val idx7 = cursor.getColumnIndex("CLG_PROG_DATE")
+                val idx8 = cursor.getColumnIndex("CLG_PROG_TIME")
+                val idx9 = cursor.getColumnIndex("CLG_MAX_USER")
+                val idx10 = cursor.getColumnIndex("IS_CLG_ACTIVE")
+                val idx11 = cursor.getColumnIndex("CLG_REWORD")
+                val idx12 = cursor.getColumnIndex("CLG_IMG")
+                val idx13 = cursor.getColumnIndex("CLG_LOCATION")
+
+                val clg_id = cursor.getInt(idx1)
+                val admin_id = cursor.getInt(idx2)
+                val addr_id = cursor.getInt(idx3)
+                val clg_nm = cursor.getString(idx4)
+                val clg_content = cursor.getString(idx5)
+                val clg_post_date = cursor.getString(idx6)
+                val clg_prog_date = cursor.getString(idx7)
+                val clg_prog_time = cursor.getString(idx8)
+                val clg_max_user = cursor.getInt(idx9)
+                val is_clg_active = cursor.getInt(idx10)
+                val clg_reword = cursor.getInt(idx11)
+                val clg_img = cursor.getString(idx12)
+                val clg_location = cursor.getString(idx13)
+
+                val challengeClass = ChallengeClass(clg_id, admin_id, addr_id, clg_nm, clg_content, clg_post_date, clg_prog_date, clg_prog_time, clg_max_user, is_clg_active, clg_reword, clg_img, clg_location)
+
+                dataList.add(challengeClass)
+            }
+            dbHelper.close()
+            return dataList
+        }
+
         // Read All : 모든 행을 가져온다
         fun selectAllData(context: Context): MutableList<ChallengeClass> {
             val dbHelper = DBHelper(context)
@@ -94,9 +140,6 @@ class ChallengeDAO {
                 val idx11 = cursor.getColumnIndex("CLG_REWORD")
                 val idx12 = cursor.getColumnIndex("CLG_IMG")
                 val idx13 = cursor.getColumnIndex("CLG_LOCATION")
-
-                Log.d("쿼리", idx1.toString())
-                Log.d("쿼리", idx2.toString())
 
                 val clg_id = cursor.getInt(idx1)
                 val admin_id = cursor.getInt(idx2)

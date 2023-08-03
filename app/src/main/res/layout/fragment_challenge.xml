@@ -7,6 +7,21 @@
     android:padding="10dp"
     tools:context=".ChallengeFragment">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/challengeAddr"
+        style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/white">
+
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
