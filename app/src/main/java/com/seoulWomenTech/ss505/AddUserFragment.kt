@@ -98,6 +98,8 @@ class AddUserFragment : Fragment() {
 
             val userAddr = userAddrList.map{a->a.idx}.joinToString(",")
 
+            
+
 
         }
         return fragmentAddUserBinding.root
