@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         val ONBOARDING_FRAGMENT = "OnboardingFragment" // 온보딩 화면
+        val LOGIN_FRAGMENT = "LoginFragment" // 로그인 화면
         val MAIN_FRAGMENT = "MainFragment" //  메인 화면
         val PARTICIPATE_FRAGMENT = "ParticipateFragment" //  참여 화면
         val CPI_FRAGMENT = "CPIFragment" //  인증샷 제출 화면
@@ -54,8 +55,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
 
         requestPermissions(permissionList,0)
-//        replaceFragment(MAIN_FRAGMENT, false, null)
-        replaceFragment(ONBOARDING_FRAGMENT, false, null)
+//        replaceFragment(ONBOARDING_FRAGMENT, false, null)
+        replaceFragment(LOGIN_FRAGMENT, false, null)
 
 
     }
@@ -89,6 +90,7 @@ class MainActivity : AppCompatActivity() {
 
         newFragment = when(name){
             ONBOARDING_FRAGMENT -> OnboardingFragment()
+            LOGIN_FRAGMENT -> LoginFragment()
             MAIN_FRAGMENT -> MainFragment()
             PARTICIPATE_FRAGMENT -> ParticipateFragment()
             CPI_FRAGMENT -> CPIFragment()
