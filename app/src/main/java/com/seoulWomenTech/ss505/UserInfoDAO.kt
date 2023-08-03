@@ -32,7 +32,7 @@ class UserInfoDAO {
         }
 
         // Read Condition : 조건에 맞는 행 하나를 가져온다.
-        fun selectData(context: Context, userId: Int): UserInfo? {
+        fun selectData(context: Context, userId: Int): UserInfo {
             val dbHelper = DBHelper(context)
             val selection = "USER_ID = ?"
             val args = arrayOf("$userId")
