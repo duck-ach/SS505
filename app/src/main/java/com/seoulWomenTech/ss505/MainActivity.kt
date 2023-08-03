@@ -7,9 +7,12 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.content.Context
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.View
 import android.view.animation.AnticipateInterpolator
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -17,6 +20,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import com.seoulWomenTech.ss505.databinding.ActivityMainBinding
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
     lateinit var activityMainBinding: ActivityMainBinding
@@ -27,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         Manifest.permission.INTERNET
     )
 
-    val userPosition = 2
+    var userPosition = 2
     // 사용자가 누른 항목 번호
     var rowPosition = 0
 
@@ -38,6 +42,9 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         val ONBOARDING_FRAGMENT = "OnboardingFragment" // 온보딩 화면
+        val LOGIN_FRAGMENT = "LoginFragment" // 로그인 화면
+        val JOIN_FRAGMENT = "JoinFragment" // 회원가입 화면
+        val ADD_USER_FRAGMENT = "AddUserFragment" // 유저 정보 입력 화면
         val MAIN_FRAGMENT = "MainFragment" //  메인 화면
         val PARTICIPATE_FRAGMENT = "ParticipateFragment" //  참여 화면
         val CPI_FRAGMENT = "CPIFragment" //  인증샷 제출 화면
@@ -54,8 +61,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
 
         requestPermissions(permissionList,0)
-//        replaceFragment(MAIN_FRAGMENT, false, null)
-        replaceFragment(ONBOARDING_FRAGMENT, false, null)
+//        replaceFragment(ONBOARDING_FRAGMENT, false, null)
+        replaceFragment(LOGIN_FRAGMENT, false, null)
 
 
     }
@@ -89,6 +96,9 @@ class MainActivity : AppCompatActivity() {
 
         newFragment = when(name){
             ONBOARDING_FRAGMENT -> OnboardingFragment()
+            JOIN_FRAGMENT -> JoinFragment()
+            ADD_USER_FRAGMENT -> AddUserFragment()
+            LOGIN_FRAGMENT -> LoginFragment()
             MAIN_FRAGMENT -> MainFragment()
             PARTICIPATE_FRAGMENT -> ParticipateFragment()
             CPI_FRAGMENT -> CPIFragment()
@@ -124,8 +134,19 @@ class MainActivity : AppCompatActivity() {
     fun removeFragment(name:String){
         supportFragmentManager.popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
+
+    // 입력 요소에 포커스를 주는 메서드
+    fun showSoftInput(view:View){
+        view.requestFocus()
+
+        val inputMethodManger = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        thread {
+            SystemClock.sleep(200)
+            inputMethodManger.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+        }
+    }
 }
-data class AddrClass(var idx: Int, var g_nm: String, var d_nm: String)
+data class AddrClass(var idx: Int, var d_nm: String, var g_nm: String)
 data class ChallengeClass(var idx: Int, var admin_id: Int,var addr_id: Int,var name: String, var content: String,var postDate: String,var progDate: String, var progTime: String, var maxUser: Int, var active: Int, var reword: Int,var img: String,var location : String)
 data class ParticipantsClass(var clg_id:Int, var user_id:Int)
 data class UserInfo(

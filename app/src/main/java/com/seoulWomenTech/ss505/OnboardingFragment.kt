@@ -30,7 +30,7 @@ class OnboardingFragment : Fragment() {
         fragmentOnboardingBinding.run {
 
             btnNext.setOnClickListener {
-                mainActivity.replaceFragment(MainActivity.MAIN_FRAGMENT,true,null)
+                mainActivity.replaceFragment(MainActivity.LOGIN_FRAGMENT,true,null)
             }
 
             viewPagerOnboarding.run {

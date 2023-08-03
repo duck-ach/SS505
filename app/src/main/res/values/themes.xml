@@ -21,6 +21,11 @@
         <item name="colorPrimary">#2E335A</item>
     </style>
 
+    <style name="Widget.App.CheckBox" parent="Widget.Material3.CompoundButton.CheckBox">
+        <item name="buttonTint">@color/white</item>
+        <item name="buttonIconTint">#2E335A</item>
+    </style>
+
 
 
 </resources>
