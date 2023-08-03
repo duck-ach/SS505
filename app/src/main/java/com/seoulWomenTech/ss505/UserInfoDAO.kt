@@ -38,7 +38,6 @@ class UserInfoDAO {
             val args = arrayOf("$userId")
             val cursor = dbHelper.writableDatabase.query("UserInfo", null, selection, args, null, null, null)
 
-
                 cursor.moveToNext()
                 val idx1 = cursor.getColumnIndex("USER_ID")
                 val idx2 = cursor.getColumnIndex("USER_NAME")
@@ -78,6 +77,60 @@ class UserInfoDAO {
             dbHelper.close()
 
             return userInfo
+        }
+
+
+        // Read by user_email : user_email로 데이터를 검색하는 메서드
+        fun selectDataByEmail(context: Context, email: String): MutableList<UserInfo> {
+            val dbHelper = DBHelper(context)
+            val selection = "USER_EMAIL = ?"
+            val args = arrayOf("$email")
+            val db = dbHelper.writableDatabase
+
+            val cursor = db.query("UserInfo", null, selection, args, null, null, null)
+
+            val dataList = mutableListOf<UserInfo>()
+
+            while (cursor.moveToNext()) {
+                val idx1 = cursor.getColumnIndex("USER_ID")
+                val idx2 = cursor.getColumnIndex("USER_NAME")
+                val idx3 = cursor.getColumnIndex("USER_EMAIL")
+                val idx4 = cursor.getColumnIndex("USER_PWD")
+                val idx5 = cursor.getColumnIndex("USER_ROLE")
+                val idx6 = cursor.getColumnIndex("USER_GENDER")
+                val idx7 = cursor.getColumnIndex("USER_POINT")
+                val idx8 = cursor.getColumnIndex("USER_PHONE")
+                val idx9 = cursor.getColumnIndex("USER_SNS")
+                val idx10 = cursor.getColumnIndex("USER_ADDR")
+                val idx11 = cursor.getColumnIndex("USER_DATE")
+                val idx12 = cursor.getColumnIndex("USER_IMG")
+                val idx13 = cursor.getColumnIndex("ADMIN_OFFICE")
+                val idx14 = cursor.getColumnIndex("ADMIN_RANK")
+
+                val user_id = cursor.getInt(idx1)
+                val name = cursor.getString(idx2)
+                val email = cursor.getString(idx3)
+                val password = cursor.getString(idx4)
+                val role = cursor.getInt(idx5)
+                val gender = cursor.getInt(idx6)
+                val point = cursor.getInt(idx7)
+                val phone = cursor.getString(idx8)
+                val sns = cursor.getString(idx9)
+                val address = cursor.getString(idx10)
+                val date = cursor.getString(idx11)
+                val image = cursor.getString(idx12)
+                val admin_office = cursor.getString(idx13)
+                val admin_rank = cursor.getString(idx14)
+
+                val userInfo = UserInfo(user_id, name, email, password, role, gender, point, phone, sns, address, date, image, admin_office, admin_rank)
+
+                dataList.add(userInfo)
+            }
+
+            cursor.close()
+            db.close()
+
+            return dataList
         }
 
         // Read All : 모든 행을 가져온다
