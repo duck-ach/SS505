@@ -98,6 +98,22 @@ class AddUserFragment : Fragment() {
 
             val userAddr = userAddrList.map{a->a.idx}.joinToString(",")
 
+            var userGender = 0
+            radioGroupAddUserGender.setOnCheckedChangeListener { group, checkedId ->
+                when (checkedId) {
+                    R.id.radioBtnUserAddGenderF -> {
+                        if (radioBtnUserAddGenderF.isChecked) {
+                           userGender = 0
+                        }
+                    }
+                    R.id.radioBtnUserAddGenderM -> {
+                        if (radioBtnUserAddGenderM.isChecked) {
+                            userGender = 1
+                        }
+                    }
+                }
+            }
+
             
 
 
