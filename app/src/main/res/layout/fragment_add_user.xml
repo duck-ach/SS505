@@ -29,7 +29,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayoutAddUserInfoNickName"
+                android:id="@+id/textInputLayoutAddUserName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="이름"
@@ -38,11 +38,29 @@
                 app:startIconDrawable="@drawable/account_box_24">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInputEditTextAddUserInfoNickName"
+                    android:id="@+id/textInputEditTextAddUserName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:inputType="text|textPersonName"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutAddUserPhone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="전화 번호"
+                android:transitionGroup="true"
+                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/phone_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditTextAddUserPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:inputType="phone"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +112,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/joinAddr"
+                android:id="@+id/addUserAddr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -110,7 +128,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/joinAddrGu"
+                    android:id="@+id/addUserAddrGu"
                     style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -125,7 +143,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/joinAddrDong"
+                    android:id="@+id/addUserAddrDong"
                     style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -152,10 +170,12 @@
             </com.google.android.material.chip.ChipGroup>
 
             <Button
-                android:id="@+id/btnAddUserInfoSubmit"
+                android:id="@+id/btnAddUserSubmit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:shadowColor="@color/black"
+                android:shadowRadius="5"
                 android:text="가입완료"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textStyle="bold" />

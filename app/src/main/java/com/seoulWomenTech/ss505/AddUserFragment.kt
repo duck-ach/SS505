@@ -1,5 +1,7 @@
 package com.seoulWomenTech.ss505
 
+import android.content.DialogInterface
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,13 +13,20 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import com.google.android.material.chip.Chip
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.seoulWomenTech.ss505.databinding.FragmentAddUserBinding
+import java.util.Date
+import java.util.Locale
 
 
 class AddUserFragment : Fragment() {
     lateinit var fragmentAddUserBinding: FragmentAddUserBinding
     lateinit var mainActivity: MainActivity
     var guList = mutableListOf<String>()
+    var userPoint = 0
+    var userSNS = "default"
+    var userImg = "user_sample"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,11 +49,11 @@ class AddUserFragment : Fragment() {
 
             val userAddrList = mutableListOf<AddrClass>()
             val guAdapter = ArrayAdapter(requireContext(), R.layout.list_item, guList)
-            (joinAddrGu.editText as? AutoCompleteTextView)?.setAdapter(guAdapter)
+            (addUserAddrGu.editText as? AutoCompleteTextView)?.setAdapter(guAdapter)
 
 
             // AutoCompleteTextView의 값이 변경될 때마다 호출되는 리스너를 추가합니다.
-            joinAddrGu.editText?.addTextChangedListener(object : TextWatcher {
+            addUserAddrGu.editText?.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(
                     s: CharSequence?,
                     start: Int,
@@ -60,11 +69,11 @@ class AddUserFragment : Fragment() {
                     val dongList = AddrDAO.selectByGNM(mainActivity, guName)
                         .map { addr -> addr.d_nm } as MutableList<String>
                     val dongAdapter = ArrayAdapter(requireContext(), R.layout.list_item, dongList)
-                    (joinAddrDong.editText as? AutoCompleteTextView)?.setAdapter(dongAdapter)
+                    (addUserAddrDong.editText as? AutoCompleteTextView)?.setAdapter(dongAdapter)
                 }
             })
 
-            joinAddrDong.editText?.addTextChangedListener(object : TextWatcher {
+            addUserAddrDong.editText?.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(
                     s: CharSequence?,
                     start: Int,
@@ -96,7 +105,9 @@ class AddUserFragment : Fragment() {
                 }
             })
 
-            val userAddr = userAddrList.map{a->a.idx}.joinToString(",")
+
+
+
 
             var userGender = 0
             radioGroupAddUserGender.setOnCheckedChangeListener { group, checkedId ->
@@ -112,6 +123,56 @@ class AddUserFragment : Fragment() {
                         }
                     }
                 }
+            }
+
+            btnAddUserSubmit.setOnClickListener {
+                val userName = textInputEditTextAddUserName.text.toString()
+                val userAddr = userAddrList.map{a->a.idx}.joinToString(",")
+                val userPhone = textInputEditTextAddUserPhone.text.toString()
+                val userDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+
+                if(userName.isEmpty()){
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setTitle("이름 입력 오류")
+                    builder.setMessage("이름을 입력해주세요")
+                    builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
+                        mainActivity.showSoftInput(textInputEditTextAddUserName)
+                    }
+                    builder.show()
+                    return@setOnClickListener
+                }
+
+                if(userPhone.isEmpty()){
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setTitle("전화번호 입력 오류")
+                    builder.setMessage("전화번호를 입력해주세요")
+                    builder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
+                        mainActivity.showSoftInput(textInputEditTextAddUserPhone)
+                    }
+                    builder.show()
+                    return@setOnClickListener
+                }
+
+                if(userAddrList.map{a->a.idx}.isEmpty()){
+                    val builder = MaterialAlertDialogBuilder(mainActivity)
+                    builder.setTitle("주소 입력 오류")
+                    builder.setMessage("주소를 입력해주세요")
+                    builder.setPositiveButton("확인",null)
+                    builder.show()
+                    return@setOnClickListener
+                }
+
+                // 저장할 데이터들을 담는다.
+                val userEmail = arguments?.getString("joinUserId")!!
+                val userPw = arguments?.getString("joinUserPw")!!
+                val userInfo = UserInfo(0,userName,userEmail,userPw,0,userGender,userPoint,userPhone,userSNS,userAddr,userDate,userImg,null,null)
+
+                UserInfoDAO.insertData(mainActivity,userInfo)
+
+                Snackbar.make(fragmentAddUserBinding.root, "가입이 완료되었습니다", Snackbar.LENGTH_SHORT).show()
+
+                mainActivity.removeFragment(MainActivity.ADD_USER_FRAGMENT)
+                mainActivity.removeFragment(MainActivity.JOIN_FRAGMENT)
             }
 
             
