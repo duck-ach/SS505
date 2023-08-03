@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         val ONBOARDING_FRAGMENT = "OnboardingFragment" // 온보딩 화면
         val LOGIN_FRAGMENT = "LoginFragment" // 로그인 화면
         val JOIN_FRAGMENT = "JoinFragment" // 회원가입 화면
+        val ADD_USER_FRAGMENT = "AddUserFragment" // 유저 정보 입력 화면
         val MAIN_FRAGMENT = "MainFragment" //  메인 화면
         val PARTICIPATE_FRAGMENT = "ParticipateFragment" //  참여 화면
         val CPI_FRAGMENT = "CPIFragment" //  인증샷 제출 화면
@@ -96,6 +97,7 @@ class MainActivity : AppCompatActivity() {
         newFragment = when(name){
             ONBOARDING_FRAGMENT -> OnboardingFragment()
             JOIN_FRAGMENT -> JoinFragment()
+            ADD_USER_FRAGMENT -> AddUserFragment()
             LOGIN_FRAGMENT -> LoginFragment()
             MAIN_FRAGMENT -> MainFragment()
             PARTICIPATE_FRAGMENT -> ParticipateFragment()
@@ -144,7 +146,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-data class AddrClass(var idx: Int, var g_nm: String, var d_nm: String)
+data class AddrClass(var idx: Int, var d_nm: String, var g_nm: String)
 data class ChallengeClass(var idx: Int, var admin_id: Int,var addr_id: Int,var name: String, var content: String,var postDate: String,var progDate: String, var progTime: String, var maxUser: Int, var active: Int, var reword: Int,var img: String,var location : String)
 data class ParticipantsClass(var clg_id:Int, var user_id:Int)
 data class UserInfo(

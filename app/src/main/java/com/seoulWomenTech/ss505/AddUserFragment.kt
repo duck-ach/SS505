@@ -11,31 +11,28 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import com.google.android.material.chip.Chip
-import com.seoulWomenTech.ss505.databinding.FragmentJoinBinding
+import com.seoulWomenTech.ss505.databinding.FragmentAddUserBinding
 
-class JoinFragment : Fragment() {
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
 
-    lateinit var fragmentJoinBinding: FragmentJoinBinding
+
+class AddUserFragment : Fragment() {
+    lateinit var fragmentAddUserBinding: FragmentAddUserBinding
     lateinit var mainActivity: MainActivity
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        fragmentJoinBinding = FragmentJoinBinding.inflate(layoutInflater)
+        fragmentAddUserBinding = FragmentAddUserBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
+        fragmentAddUserBinding.run {
 
-        fragmentJoinBinding.run {
-            btnJoin.setOnClickListener {
-                mainActivity.replaceFragment(MainActivity.ADD_USER_FRAGMENT,true,null)
-            }
 
         }
-
-
-
-        return fragmentJoinBinding.root
+        return fragmentAddUserBinding.root
     }
-
 
 }
