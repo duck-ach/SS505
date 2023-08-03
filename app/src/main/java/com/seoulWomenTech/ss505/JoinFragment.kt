@@ -39,6 +39,13 @@ class JoinFragment : Fragment() {
                 next()
             }
 
+            textInputEditTextJoinUserPw2.run{
+                setOnEditorActionListener { textView, i, keyEvent ->
+                    next()
+                    true
+                }
+            }
+
         }
 
 
