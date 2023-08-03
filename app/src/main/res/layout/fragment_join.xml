@@ -14,7 +14,9 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/Theme.SS505.Toolbar"
-        android:visibility="invisible" />
+        android:visibility="visible"
+        app:navigationIconTint="@color/white"
+        app:titleTextColor="@color/white" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="15dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayoutJoinUserId"
@@ -81,7 +83,6 @@
                     android:inputType="text|textPassword"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
             </com.google.android.material.textfield.TextInputLayout>
-
 
 
             <Button
