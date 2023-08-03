@@ -46,6 +46,8 @@ class JoinFragment : Fragment() {
                 }
             }
 
+            mainActivity.showSoftInput(textInputEditTextJoinUserId)
+
         }
 
 
