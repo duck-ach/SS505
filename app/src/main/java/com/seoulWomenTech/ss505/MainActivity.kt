@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         Manifest.permission.INTERNET
     )
 
-    var userPosition = 2
+    var userPosition = 0
     // 사용자가 누른 항목 번호
     var rowPosition = 0
 

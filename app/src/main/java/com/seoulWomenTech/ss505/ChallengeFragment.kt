@@ -2,10 +2,15 @@ package com.seoulWomenTech.ss505
 
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -25,14 +30,32 @@ class ChallengeFragment : Fragment() {
     lateinit var mainActivity: MainActivity
 
     var challengeList = mutableListOf<ChallengeClass>()
+    var challengeTemp = mutableListOf<ChallengeClass>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
+    ): View {
         fragmentChallengeBinding = FragmentChallengeBinding.inflate(inflater)
         mainActivity = activity as MainActivity
+
+
+        val user = UserInfoDAO.selectData(mainActivity,mainActivity.userPosition)
+        val userAddrNum = user.address?.split(",")?.map { n -> n.toInt() } as MutableList<Int>
+        val userAddrList = mutableListOf<AddrClass>()
+        var addrItem = mutableListOf<String>()
+
+        for(i in userAddrNum) {
+            userAddrList.add(AddrDAO.selectData(mainActivity, i))
+            ChallengeDAO.selectByAddrID(mainActivity, i).forEach {
+                challengeTemp.add(it)
+            }
+        }
+
+        for(i in userAddrList){
+            addrItem.add("${i.g_nm} ${i.d_nm}")
+        }
+        addrItem.add(0,"전체")
 
 
         fragmentChallengeBinding.run{
@@ -42,6 +65,42 @@ class ChallengeFragment : Fragment() {
                 layoutManager = LinearLayoutManager(mainActivity)
                 addItemDecoration(DividerItemDecoration(mainActivity, DividerItemDecoration.VERTICAL))
             }
+
+            if(challengeTemp.isEmpty()){
+                challengeAddrList.visibility = View.GONE
+                textViewChallenge.run {
+                    visibility = View.VISIBLE
+                }
+
+            }
+
+            val addrAdapter = ArrayAdapter(requireContext(), R.layout.list_item, addrItem)
+            (challengeAddrList.editText as AutoCompleteTextView).setAdapter(addrAdapter)
+            // AutoCompleteTextView의 값이 변경될 때마다 호출되는 리스너를 추가합니다.
+            challengeAddrList.editText?.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+                override fun afterTextChanged(s: Editable?) {
+                    var addrListItem = s.toString()
+                    challengeList = if(addrListItem == "전체"){
+                        challengeTemp
+                    } else{
+                        val dongIdx = AddrDAO.selectByDNM(mainActivity, addrListItem.split(" ")[1])
+                            .map { addr -> addr.idx }[0]
+                        ChallengeDAO.selectByAddrID(mainActivity,dongIdx)
+                    }
+                    fragmentChallengeBinding.recyclerViewChallenge.adapter?.notifyDataSetChanged()
+
+                }
+            })
 
         }
 
@@ -124,7 +183,7 @@ class ChallengeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        challengeList = ChallengeDAO.selectAllData(mainActivity)
+        challengeList = challengeTemp
 
         // 리사이클러뷰 갱신
         fragmentChallengeBinding.recyclerViewChallenge.adapter?.notifyDataSetChanged()
