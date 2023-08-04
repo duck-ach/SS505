@@ -96,7 +96,6 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                android:background="@drawable/image_round"
                 android:scaleType="centerCrop"
                 android:src="@drawable/image_search_24"
                 android:visibility="gone" />
