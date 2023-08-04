@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -38,20 +39,50 @@ class MainFragment : Fragment() {
         viewPager.adapter = adapter
 
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                tab.select()
+        fragmentMainBinding.run {
+            toolbarMain.run{
+                title = "Safety Seoul"
+                
+                setNavigationOnClickListener {
+                    // 네비게이션 뷰를 보여준다.
+                    drawerLayout.open()
+
+                }
 
             }
 
-            override fun onTabUnselected(tab: TabLayout.Tab) {
+            navigationViewMain.run {
+                setNavigationItemSelectedListener {
+                    when(it.itemId){
+                        R.id.nav_challenge -> {
+                            drawerLayout.close()
+//                            mainActivity.replaceFragment(MainActivity.MAIN_FRAGMENT,true,null)
+                        }
 
+                        R.id.nav_safedata -> {
+                            Fragment()
+                            drawerLayout.close()
+                        }
+
+                        R.id.mypage -> {
+                            mainActivity.replaceFragment(MainActivity.MYPAGE_FRAGMENT,true,null)
+                            drawerLayout.close()
+                        }
+                        R.id.nav_logout -> {
+                            mainActivity.replaceFragment(MainActivity.LOGIN_FRAGMENT,false,null)
+
+                        }
+
+                        else -> {
+
+                        }
+
+                    }
+                    false
+                }
             }
+        }
 
-            override fun onTabReselected(tab: TabLayout.Tab) {
-
-            }
-        })
         // TabLayout, ViewPager 연결
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {

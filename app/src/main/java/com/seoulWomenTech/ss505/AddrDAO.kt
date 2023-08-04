@@ -12,8 +12,8 @@ class AddrDAO {
             // 컬럼이름과 데이터를 설정하는 객체
             val contentValues = ContentValues()
             // 컬럼 이름, 값을 지정한다.
-            contentValues.put("G_NM", data.g_nm)
-            contentValues.put("D_NM", data.d_nm)
+            contentValues.put("D_NM", data.g_nm)
+            contentValues.put("G_NM", data.d_nm)
 
             val dbHelper = DBHelper(context)
 
@@ -32,18 +32,74 @@ class AddrDAO {
             cursor.moveToNext()
 
             val idx1 = cursor.getColumnIndex("ADDR_ID")
-            val idx2 = cursor.getColumnIndex("G_NM")
-            val idx3 = cursor.getColumnIndex("D_NM")
+            val idx2 = cursor.getColumnIndex("D_NM")
+            val idx3 = cursor.getColumnIndex("G_NM")
 
             val addr_id = cursor.getInt(idx1)
-            val g_nm = cursor.getString(idx2)
-            val d_nm = cursor.getString(idx3)
+            val d_nm = cursor.getString(idx2)
+            val g_nm = cursor.getString(idx3)
 
 
-            val AddrClass = AddrClass(addr_id,g_nm,d_nm)
+            val addrClass = AddrClass(addr_id,d_nm,g_nm)
 
             dbHelper.close()
-            return AddrClass
+            return addrClass
+        }
+
+        // Read By G_NM
+        fun selectByGNM(context: Context, g_nm:String):MutableList<AddrClass>{
+
+            val dbHelper = DBHelper(context)
+            val selection = "g_nm = ?"
+            val args = arrayOf("$g_nm")
+            val cursor = dbHelper.writableDatabase.query("ADDR", null, selection, args, null, null, null)
+
+            val dataList = mutableListOf<AddrClass>()
+            while (cursor.moveToNext()){
+                val idx1 = cursor.getColumnIndex("ADDR_ID")
+                val idx2 = cursor.getColumnIndex("D_NM")
+                val idx3 = cursor.getColumnIndex("G_NM")
+
+                val addr_id = cursor.getInt(idx1)
+                val d_nm = cursor.getString(idx2)
+                val g_nm = cursor.getString(idx3)
+
+
+                val addrClass = AddrClass(addr_id,d_nm,g_nm)
+                dataList.add(addrClass)
+            }
+
+
+
+            dbHelper.close()
+            return dataList
+        }
+
+        // Read By D_NM
+        fun selectByDNM(context: Context, d_nm:String):MutableList<AddrClass>{
+
+            val dbHelper = DBHelper(context)
+            val selection = "d_nm = ?"
+            val args = arrayOf("$d_nm")
+            val cursor = dbHelper.writableDatabase.query("ADDR", null, selection, args, null, null, null)
+
+            val dataList = mutableListOf<AddrClass>()
+            while (cursor.moveToNext()){
+                val idx1 = cursor.getColumnIndex("ADDR_ID")
+                val idx2 = cursor.getColumnIndex("D_NM")
+                val idx3 = cursor.getColumnIndex("G_NM")
+
+                val addr_id = cursor.getInt(idx1)
+                val d_nm = cursor.getString(idx2)
+                val g_nm = cursor.getString(idx3)
+
+
+                val addrClass = AddrClass(addr_id,d_nm,g_nm)
+                dataList.add(addrClass)
+            }
+
+            dbHelper.close()
+            return dataList
         }
 
         // Read All : 모든 행을 가져온다
@@ -56,18 +112,18 @@ class AddrDAO {
             val dataList = mutableListOf<AddrClass>()
 
             while(cursor.moveToNext()){
-                val idx1 = cursor.getColumnIndex("addr_id")
-                val idx2 = cursor.getColumnIndex("G_NM")
-                val idx3 = cursor.getColumnIndex("D_NM")
+                val idx1 = cursor.getColumnIndex("ADDR_ID")
+                val idx2 = cursor.getColumnIndex("D_NM")
+                val idx3 = cursor.getColumnIndex("G_NM")
 
                 val addr_id = cursor.getInt(idx1)
-                val g_nm = cursor.getString(idx2)
-                val d_nm = cursor.getString(idx3)
+                val d_nm = cursor.getString(idx2)
+                val g_nm = cursor.getString(idx3)
 
 
-                val AddrClass = AddrClass(addr_id,g_nm,d_nm)
+                val addrClass = AddrClass(addr_id,d_nm,g_nm)
 
-                dataList.add(AddrClass)
+                dataList.add(addrClass)
             }
 
 
@@ -78,8 +134,8 @@ class AddrDAO {
         // Update : 조건에 맞는 행의 컬럼의 값을 수정한다.
         fun updateData(context:Context, obj:AddrClass){
             val cv = ContentValues()
-            cv.put("g_nm", obj.g_nm)
-            cv.put("d_nm", obj.d_nm)
+            cv.put("d_nm", obj.g_nm)
+            cv.put("g_nm", obj.d_nm)
             val condition = "addr_id = ?"
             val args = arrayOf("${obj.idx}")
             val dbHelper = DBHelper(context)
