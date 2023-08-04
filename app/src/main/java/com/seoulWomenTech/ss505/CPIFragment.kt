@@ -16,6 +16,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
@@ -60,11 +61,11 @@ class CPIFragment : Fragment() {
                     when(it.itemId){
                         R.id.nav_challenge -> {
                             drawerLayoutCPI.close()
-//                            mainActivity.replaceFragment(MainActivity.MAIN_FRAGMENT,true,null)
+                            mainActivity.replaceFragment(MainActivity.MAIN_FRAGMENT,true,null)
                         }
 
                         R.id.nav_safedata -> {
-                            Fragment()
+                            mainActivity.replaceFragment(MainActivity.SAFETYDATA_FRAGMENT,true,null)
                             drawerLayoutCPI.close()
                         }
 
@@ -73,6 +74,7 @@ class CPIFragment : Fragment() {
                             drawerLayoutCPI.close()
                         }
                         R.id.nav_logout -> {
+                            mainActivity.supportFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                             mainActivity.replaceFragment(MainActivity.LOGIN_FRAGMENT,false,null)
 
                         }

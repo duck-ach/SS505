@@ -2,11 +2,11 @@ package com.seoulWomenTech.ss505
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -60,7 +60,7 @@ class MainFragment : Fragment() {
                         }
 
                         R.id.nav_safedata -> {
-                            Fragment()
+                            mainActivity.replaceFragment(MainActivity.SAFETYDATA_FRAGMENT,true,null)
                             drawerLayoutMain.close()
                         }
 
@@ -69,9 +69,10 @@ class MainFragment : Fragment() {
                             drawerLayoutMain.close()
                         }
                         R.id.nav_logout -> {
+                            mainActivity.supportFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                             mainActivity.replaceFragment(MainActivity.LOGIN_FRAGMENT,false,null)
-
                         }
+
 
                         else -> {
 

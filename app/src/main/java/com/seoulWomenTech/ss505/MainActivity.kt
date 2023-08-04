@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         val POST_FRAGMENT = "PostFragment"
         val CPI_FRAGMENT = "CPIFragment" //  인증샷 제출 화면
         val MYPAGE_FRAGMENT = "MyPageFragment"
+        val SAFETYDATA_FRAGMENT = "SafetyDataFragment"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,6 +116,7 @@ class MainActivity : AppCompatActivity() {
             POST_FRAGMENT -> PostFragment()
             CPI_FRAGMENT -> CPIFragment()
             MYPAGE_FRAGMENT -> MyPageFragment()
+            SAFETYDATA_FRAGMENT -> SafetyDataFragment()
 
             else -> Fragment()
         }
