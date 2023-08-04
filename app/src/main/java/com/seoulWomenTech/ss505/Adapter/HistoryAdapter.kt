@@ -7,8 +7,9 @@ import com.seoulWomenTech.ss505.databinding.HistoryitemBinding
 import com.seoulWomenTech.ss505.model.HistoryModelClass
 
 
-// RecyclerView에 데이터 (historyitem) 넣는 작업
 class HistoryAdapter(var ListHistory:ArrayList<HistoryModelClass>) : RecyclerView.Adapter<HistoryAdapter.HistoryPointViewHolder>() {
+
+    // RecyclerView에 데이터 (historyitem) 넣는 작업
     class HistoryPointViewHolder(var binding: HistoryitemBinding) :RecyclerView.ViewHolder(binding.root){
 
     }
