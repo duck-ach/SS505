@@ -91,8 +91,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:shadowColor="@color/black"
                 android:text="다음"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                tools:shadowRadius="5" />
 
         </LinearLayout>
     </ScrollView>
