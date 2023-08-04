@@ -8,17 +8,21 @@
     android:orientation="vertical"
     tools:context=".MainFragment" >
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.Sidebarkaka.AppBarOverlay">
 
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbarMain"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
+            android:layout_height="?attr/actionBarSize"
+            android:background="#2E3559"
+            app:popupTheme="@style/Theme.Sidebarkaka.PopupOverlay" />
 
-        <com.google.android.material.tabs.TabLayout
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabMode="fixed"
@@ -30,4 +34,6 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+
 </LinearLayout>

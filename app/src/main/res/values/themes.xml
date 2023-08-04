@@ -3,11 +3,20 @@
     <style name="Base.Theme.SS505" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
 
-<!--        <item name="android:windowBackground">#2E335A</item>-->
+        <!--        <item name="android:windowBackground">#2E335A</item>-->
 
     </style>
 
     <style name="Theme.SS505" parent="Base.Theme.SS505" />
+
+    <style name="Theme.SS505.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.SS505.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.SS505.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
 </resources>
