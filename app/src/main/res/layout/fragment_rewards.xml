@@ -66,21 +66,21 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/btnSeoulpay"
-        app:srcCompat="@mipmap/ic_seoulpay_foreground" />
+        app:srcCompat="@drawable/seoulpay" />
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="@+id/btnTtareung"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/ic_ttareung_foreground" />
+        app:srcCompat="@drawable/ttareung" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -89,10 +89,9 @@
         android:layout_margin="12dp"
         app:layout_constraintBottom_toTopOf="@+id/btnTtareung"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208">
+        app:layout_constraintVertical_bias="0.0">
 
     </FrameLayout>
 
