@@ -3,6 +3,8 @@
     <style name="Base.Theme.SS505" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
 
+      <item name="android:windowBackground">#2E335A</item>
+
         <item name="android:windowBackground">#2E335A</item>
 
         <!-- 모든 UI 요소의 기본 색상 -->
@@ -14,6 +16,7 @@
         <!-- 상태바의 색상의 밝은 색이므로 그에 맞는 색상 -->
         <item name="android:windowLightStatusBar">true</item>
 
+
     </style>
 
     <style name="Theme.SS505" parent="Base.Theme.SS505" />
@@ -22,8 +25,6 @@
     <style name="Theme.SS505.Toolbar" parent="ThemeOverlay.Material3.Toolbar.Surface">
         <item name="colorPrimary">#2E335A</item>
     </style>
-
-
 
 
 </resources>
