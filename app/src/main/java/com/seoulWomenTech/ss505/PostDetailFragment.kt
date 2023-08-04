@@ -19,22 +19,22 @@ class PostDetailFragment : Fragment() {
     private lateinit var fragmentPostDetailBinding: FragmentPostDetailBinding
     private lateinit var mainActivity: MainActivity
     private lateinit var post: PostClass
-    private lateinit var user: UserClass
+    private lateinit var user: UserInfo
     private var postImageList = mutableListOf<PostImageClass>()
     private var commentList = mutableListOf<CommentClass>()
-    private var userList = mutableListOf<UserClass>()
+    private var userList = mutableListOf<UserInfo>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        fragmentPostDetailBinding = FragmentPostDetailBinding.inflate(inflater, container, false)
+        fragmentPostDetailBinding = FragmentPostDetailBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
         // 선택된 post_id와 일치하는 데이터 가져오기
         post = PostDAO.selectData(mainActivity, mainActivity.rowPosition)
-        user = UserDao.selectData(mainActivity, post.user_id)
-        userList = UserDao.selectAllData(mainActivity)
+        user = UserInfoDAO.selectData(mainActivity, post.user_id)
+        userList = UserInfoDAO.selectAllData(mainActivity)
         postImageList = PostImageDao.selectData(mainActivity, post.post_id)
         commentList = CommentDAO.selectData(mainActivity, post.post_id)
 
@@ -52,6 +52,7 @@ class PostDetailFragment : Fragment() {
         recyclerViewComment.adapter = CommentRecyclerViewAdapter(commentList, userList)
         recyclerViewComment.layoutManager = LinearLayoutManager(mainActivity)
 
+
         return fragmentPostDetailBinding.root
     }
 
@@ -60,7 +61,7 @@ class PostDetailFragment : Fragment() {
             // Display user information
             user?.let {
                 Glide.with(fragmentPostDetailBinding.root)
-                    .load(it.user_image)
+                    .load(it.image)
                     .transform(CircleCrop())
                     .placeholder(R.drawable.placeholder_image)
                     .into(fragmentPostDetailBinding.imageViewUser)
@@ -107,16 +108,16 @@ class PostDetailFragment : Fragment() {
 
     private inner class CommentRecyclerViewAdapter(
         private val commentList: List<CommentClass>,
-        private val userList: List<UserClass>
+        private val userList: List<UserInfo>
     ) : RecyclerView.Adapter<CommentRecyclerViewAdapter.CommentViewHolder>() {
 
         inner class CommentViewHolder(private val rowCommentBinding: RowCommentBinding) :
             RecyclerView.ViewHolder(rowCommentBinding.root) {
 
-            fun bindData(comment: CommentClass, user: UserClass?) {
+            fun bindData(comment: CommentClass, user: UserInfo?) {
                 user?.let {
                     Glide.with(rowCommentBinding.root)
-                        .load(it.user_image)
+                        .load(it.image)
                         .transform(CircleCrop())
                         .placeholder(R.drawable.placeholder_image)
                         .into(rowCommentBinding.imageViewProfile)
@@ -145,7 +146,7 @@ class PostDetailFragment : Fragment() {
             val comment = commentList[position]
 
             // Get the user for the current comment (comment.writer_id) from the userList
-            val user = userList.find { it.user_id == comment.writer_id }
+            val user = userList.find { it.idx == comment.writer_id }
 
             holder.bindData(comment, user)
         }

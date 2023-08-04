@@ -69,17 +69,11 @@ class MainActivity : AppCompatActivity() {
         addSampleData()
 //         replaceFragment(MAIN_FRAGMENT, false, null)
         
-        replaceFragment(ONBOARDING_FRAGMENT, false, null)
-//        replaceFragment(LOGIN_FRAGMENT, false, null)
+//        replaceFragment(ONBOARDING_FRAGMENT, false, null)
+        replaceFragment(LOGIN_FRAGMENT, false, null)
 
     }
-    
-=======
 
-        
-
-
-    
 
     fun splashScreenCustomizing(splashScreen: SplashScreen){
         splashScreen.setOnExitAnimationListener{
@@ -210,7 +204,7 @@ class MainActivity : AppCompatActivity() {
             1,
             "유저1",
             "이미지1",
-            "이미지주소1"
+            "placeholder_2"
         )
         PostImageDao.insertData(this, postImage1)
 
@@ -219,7 +213,7 @@ class MainActivity : AppCompatActivity() {
             2,
             "유저2",
             "이미지2",
-            "이미지주소2"
+            "sample_img"
         )
         PostImageDao.insertData(this, postImage2)
 
@@ -228,7 +222,7 @@ class MainActivity : AppCompatActivity() {
             3,
             "유저3",
             "이미지3",
-            "이미지주소3"
+            "c202307271113"
         )
         PostImageDao.insertData(this, postImage3)
 
