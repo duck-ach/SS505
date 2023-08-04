@@ -19,7 +19,7 @@ class PostFragment : Fragment() {
     private lateinit var fragmentPostBinding: FragmentPostBinding
     private lateinit var mainActivity: MainActivity
     private var postList = mutableListOf<PostClass>()
-    private var userList = mutableListOf<UserClass>()
+    private var userList = mutableListOf<UserInfo>()
     private var postImageList = mutableListOf<PostImageClass>()
 
     override fun onCreateView(
@@ -31,7 +31,7 @@ class PostFragment : Fragment() {
 
         // postList, userList, postImageList 초기화 (데이터베이스에서 가져옴)
         postList = PostDAO.selectAllData(mainActivity)
-        userList = UserDao.selectAllData(mainActivity)
+        userList = UserInfoDAO.selectAllData(mainActivity)
         postImageList = PostImageDao.selectAllData(mainActivity)
 
         fragmentPostBinding.run {
@@ -55,30 +55,45 @@ class PostFragment : Fragment() {
 
     inner class PostRecyclerViewAdapter(
         private val postList: List<PostClass>,
-        private val userList: List<UserClass>,
+        private val userList: List<UserInfo>,
         private val postImageList: List<PostImageClass>
     ) : RecyclerView.Adapter<PostRecyclerViewAdapter.PostViewHolderClass>() {
 
         inner class PostViewHolderClass(private val rowPostBinding: RowPostBinding) :
             RecyclerView.ViewHolder(rowPostBinding.root) {
 
-            fun bindData(post: PostClass, user: UserClass?, postImage: PostImageClass?) {
+            fun bindData(post: PostClass, user: UserInfo?, postImage: PostImageClass?) {
                 user?.let {
                     rowPostBinding.textViewUserName.text = it.name
-                    Glide.with(rowPostBinding.root)
-                        .load(it.user_image)
-                        .transform(CircleCrop())
-                        .placeholder(R.drawable.placeholder_image)
-                        .into(rowPostBinding.imageViewUser)
+//                    Glide.with(rowPostBinding.root)
+//                        .load(it.image)
+//                        .transform(CircleCrop())
+//                        .placeholder(R.drawable.placeholder_image)
+//                        .into(rowPostBinding.imageViewUser)
+                    val imgSrc = mainActivity.resources.getIdentifier(it.image, "drawable", mainActivity.packageName)
+
+                    if(imgSrc!=null){
+                        rowPostBinding.imageViewUser.setImageResource(imgSrc)
+                    }
+
+                    rowPostBinding.imageViewUser.clipToOutline = true
                 }
 
                 rowPostBinding.textViewPostTitle.text = post.post_title
 
+
+
+
                 postImage?.let {
-                    Glide.with(rowPostBinding.root)
-                        .load(it.pi_url)
-                        .placeholder(R.drawable.placeholder_2)
-                        .into(rowPostBinding.imageViewPostImg)
+                    val imgSrc = mainActivity.resources.getIdentifier(it.pi_url, "drawable", mainActivity.packageName)
+
+                    if(imgSrc!=null){
+                        rowPostBinding.imageViewPostImg.setImageResource(imgSrc)
+                    }
+//                    Glide.with(rowPostBinding.root)
+//                        .load(it.pi_url)
+//                        .placeholder(R.drawable.placeholder_2)
+//                        .into(rowPostBinding.imageViewPostImg)
                 }
 
                 rowPostBinding.root.setOnClickListener {
@@ -103,7 +118,7 @@ class PostFragment : Fragment() {
             val post = postList[position]
 
             // 해당 게시물에 대한 사용자 정보 가져오기 (post.user_id와 userList.user_id를 비교하여 찾음)
-            val user = userList.find { it.user_id == post.user_id }
+            val user = userList.find { it.idx == post.user_id }
 
             // 해당 게시물에 대한 이미지 정보 가져오기 (post.post_id와 postImageList.post_id를 비교하여 찾음)
             val postImage = postImageList.find { it.post_id == post.post_id }
@@ -117,7 +132,7 @@ class PostFragment : Fragment() {
 
         // 데이터베이스에서 최신 데이터를 가져옴
         postList = PostDAO.selectAllData(mainActivity)
-        userList = UserDao.selectAllData(mainActivity)
+        userList = UserInfoDAO.selectAllData(mainActivity)
         postImageList = PostImageDao.selectAllData(mainActivity)
 
         // 리사이클러뷰 어댑터 갱신
