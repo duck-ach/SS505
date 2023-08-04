@@ -7,7 +7,9 @@ plugins {
 android {
     namespace 'com.seoulWomenTech.ss505'
     compileSdk 33
-
+    buildFeatures {
+        dataBinding true
+    }
     defaultConfig {
         applicationId "com.seoulWomenTech.ss505"
         minSdk 25
@@ -35,13 +37,12 @@ android {
     viewBinding{
         enabled = true
     }
-    buildFeatures {
-        viewBinding true
-    }
 }
 
 dependencies {
-
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    implementation 'jp.wasabeef:glide-transformations:4.3.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     
