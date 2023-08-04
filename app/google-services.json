@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1065963201561",
+    "project_id": "ss505-ba59b",
+    "storage_bucket": "ss505-ba59b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1065963201561:android:8789a9e79443f9b655f688",
+        "android_client_info": {
+          "package_name": "com.seoulWomenTech.ss505"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1065963201561-8ka8ch3e7s047mhp58erp2tsubgcbmcl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnBLqueIsrO90n0byL72lkda0IkMoBkhw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1065963201561-8ka8ch3e7s047mhp58erp2tsubgcbmcl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

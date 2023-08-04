@@ -12,5 +12,5 @@
         android:id="@+id/mainContainer"
         android:name="com.seoulWomenTech.ss505.MainFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 </LinearLayout>
