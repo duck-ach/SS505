@@ -1,14 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".ParticipateFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarParticipate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/Theme.SS505.Toolbar"
+            app:navigationIcon="@drawable/menu_24"
+            app:navigationIconTint="@color/white"
+            app:titleCentered="true"
+            app:titleTextColor="@color/white" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/participateImg"
+                android:layout_width="match_parent"
+                android:layout_height="158dp"
+                android:background="@drawable/image_round"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sample_img" />
+
+            <TextView
+                android:id="@+id/participateTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="ParticipateFragment"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/participateDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="일시 : "
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/participateMaxUserText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="참여 인원 : "
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/participateLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="만남장소 : "
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/participateContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="참여 내용 : "
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/white" />
+
+            <android.widget.Button
+                android:id="@+id/btnParticipate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_round"
+                android:shadowColor="#000000"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="5"
+                android:text="참여하기"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/participateAdminImg"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/police1" />
+
+                <TextView
+                    android:id="@+id/participateAdminName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/participateMaxUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="참여자"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewParticipate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

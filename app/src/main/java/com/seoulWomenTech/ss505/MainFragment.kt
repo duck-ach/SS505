@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -38,20 +39,21 @@ class MainFragment : Fragment() {
         viewPager.adapter = adapter
 
 
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                tab.select()
+        fragmentMainBinding.run {
+            toolbarMain.run{
+                title = "Safety Seoul"
+                
+                setNavigationOnClickListener {
+                    // 네비게이션 뷰를 보여준다.
+
+
+                }
+
+
 
             }
+        }
 
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab) {
-
-            }
-        })
         // TabLayout, ViewPager 연결
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {

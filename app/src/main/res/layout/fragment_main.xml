@@ -9,6 +9,9 @@
     tools:context=".MainFragment" >
 
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarMain"
@@ -16,18 +19,27 @@
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabMode="fixed"
-            android:id="@+id/tabLayoutMain">
-        </com.google.android.material.tabs.TabLayout>
+            android:theme="@style/Theme.SS505.Toolbar"
+            app:navigationIcon="@drawable/menu_24"
+            app:navigationIconTint="@color/white"
+            app:titleCentered="true"
+            app:titleTextColor="@color/white" />
 
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2E335A"
+        app:tabIndicatorColor="@color/material_dynamic_tertiary99"
+        app:tabMode="fixed"
+        app:tabTextColor="@color/design_default_color_on_primary"></com.google.android.material.tabs.TabLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+
 </LinearLayout>
