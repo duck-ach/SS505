@@ -32,7 +32,7 @@ class RewardsHistoryFragment : Fragment() {
         var adaptor = HistoryAdapter(ListHistory)
         binding.HistoryRecyclerView.adapter = adaptor
         binding.HistoryRecyclerView.setHasFixedSize(true)
-        // Inflate the layout for this fragment
+
         return binding.root
     }
 
