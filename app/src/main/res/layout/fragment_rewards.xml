@@ -32,6 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/frameLayout" />
 
+    <!--텍스트뷰에 총합 포인트 데이터 값 넣기-->
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
@@ -54,6 +55,7 @@
         app:layout_constraintStart_toStartOf="@+id/button"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
+    <!--버튼 누르면 fragment_rewards_history로 이-->
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -64,6 +66,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/frameLayout" />
 
+    <!--버튼 누르면 서울페이 쿠폰-->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="110dp"
@@ -95,6 +98,7 @@
 
     </FrameLayout>
 
+    <!--버튼 누르면 따릉이 쿠폰-->
     <Button
         android:id="@+id/btnTtareung"
         android:layout_width="0dp"
@@ -106,6 +110,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <!--버튼 누르면 서울페이 쿠폰-->
     <Button
         android:id="@+id/btnSeoulpay"
         android:layout_width="0dp"
