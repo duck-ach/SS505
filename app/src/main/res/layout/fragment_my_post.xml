@@ -95,7 +95,6 @@
                                     android:layout_height="wrap_content"
                                     android:textSize="10dp"
                                     android:text="역촌동 경찰서에서 출발하여 OO, YY, XX를 돌며 사진을 찍었고 쓰레기를 주우며 환경미화를 진행했습니다."
-                                    android:textAppearance="?attr/textAppearanceBodyMedium"
                                     android:textColor="?android:attr/textColorSecondary"
                                     />
 
