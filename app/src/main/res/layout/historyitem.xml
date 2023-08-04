@@ -5,6 +5,7 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/Rewards_history_layout1"
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginStart="8dp"
@@ -17,13 +18,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/Star"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
             android:src="@android:drawable/btn_star" />
 
         <LinearLayout
+            android:id="@+id/Rewards_history_layout2"
             android:layout_width="274dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -31,7 +33,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/safety_video_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
