@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         val MAIN_FRAGMENT = "MainFragment" //  메인 화면
         val PARTICIPATE_FRAGMENT = "ParticipateFragment" //  참여 화면
         val CPI_FRAGMENT = "CPIFragment" //  인증샷 제출 화면
+        val MYPAGE_FRAGMENT = "MyPageFragment"
 
     }
 
@@ -103,6 +104,7 @@ class MainActivity : AppCompatActivity() {
             MAIN_FRAGMENT -> MainFragment()
             PARTICIPATE_FRAGMENT -> ParticipateFragment()
             CPI_FRAGMENT -> CPIFragment()
+            MYPAGE_FRAGMENT -> MyPageFragment()
             else -> Fragment()
         }
 

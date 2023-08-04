@@ -45,12 +45,41 @@ class MainFragment : Fragment() {
                 
                 setNavigationOnClickListener {
                     // 네비게이션 뷰를 보여준다.
-
+                    drawerLayout.open()
 
                 }
 
+            }
 
+            navigationViewMain.run {
+                setNavigationItemSelectedListener {
+                    when(it.itemId){
+                        R.id.nav_challenge -> {
+                            drawerLayout.close()
+//                            mainActivity.replaceFragment(MainActivity.MAIN_FRAGMENT,true,null)
+                        }
 
+                        R.id.nav_safedata -> {
+                            Fragment()
+                            drawerLayout.close()
+                        }
+
+                        R.id.mypage -> {
+                            mainActivity.replaceFragment(MainActivity.MYPAGE_FRAGMENT,true,null)
+                            drawerLayout.close()
+                        }
+                        R.id.nav_logout -> {
+                            mainActivity.replaceFragment(MainActivity.LOGIN_FRAGMENT,false,null)
+
+                        }
+
+                        else -> {
+
+                        }
+
+                    }
+                    false
+                }
             }
         }
 

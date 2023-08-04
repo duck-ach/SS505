@@ -19,14 +19,7 @@
         <activity
             android:name=".MyPostActivity"
             android:exported="false" />
-        <activity
-            android:name=".ActionBar"
-            android:exported="false"
-            android:label="@string/title_activity_sidebar"
-            android:theme="@style/Theme.SS505.NoActionBar" />
-        <activity
-            android:name=".MyPageFragment"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
