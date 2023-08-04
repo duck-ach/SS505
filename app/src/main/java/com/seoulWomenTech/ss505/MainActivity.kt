@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
-        replaceFragment(SAFETY_FRAGMENT, false, null)
+        replaceFragment(REWARDSHISTORY_FRAGMENT, false, null)
 
     }
 
