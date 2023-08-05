@@ -72,8 +72,8 @@ class MainActivity : AppCompatActivity() {
 //        addSampleData()
 //         replaceFragment(MAIN_FRAGMENT, false, null)
         
-//        replaceFragment(ONBOARDING_FRAGMENT, false, null)
-        replaceFragment(LOGIN_FRAGMENT, false, null)
+        replaceFragment(ONBOARDING_FRAGMENT, false, null)
+//        replaceFragment(LOGIN_FRAGMENT, false, null)
 
     }
 

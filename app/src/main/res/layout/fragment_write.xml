@@ -12,15 +12,17 @@
             android:id="@+id/spinnerCategory"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:layout_marginBottom="15dp" />
+            android:layout_marginBottom="15dp"
+            android:background="@color/white"/>
 
         <!-- 글 제목 입력칸 -->
         <EditText
             android:id="@+id/editTextTitle"
             android:layout_width="match_parent"
-            android:layout_height="63dp"
+            android:layout_height="54dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:background="@color/white"
             android:hint="제목을 입력하세요"
             android:inputType="text" />
 
@@ -34,7 +36,8 @@
             android:hint="글 내용을 입력하세요"
             android:inputType="textMultiLine"
             android:minLines="6"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical"
+            android:background="@color/white"/>
 
         <!-- 등록 버튼 -->
         <Button
