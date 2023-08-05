@@ -37,9 +37,8 @@ class MainActivity : AppCompatActivity() {
     // 사용자가 누른 항목 번호
     var rowPosition = 0
 
-    var newFragment:Fragment? = null
-    var oldFragment:Fragment? = null
-
+    var newFragment: Fragment? = null
+    var oldFragment: Fragment? = null
 
 
     companion object {
@@ -49,12 +48,16 @@ class MainActivity : AppCompatActivity() {
         val ADD_USER_FRAGMENT = "AddUserFragment" // 유저 정보 입력 화면
         val MAIN_FRAGMENT = "MainFragment" //  메인 화면
         val PARTICIPATE_FRAGMENT = "ParticipateFragment" //  참여 화면
+        val SAFETY_FRAGMENT = "SafetyFragment"  // 안전 자료
+        val REWARDS_FRAGMENT = "RewardsFragment"  // 리워드 사용 화면
+        val REWARDSHISTORY_FRAGMENT = "RewardsHistoryFragment"  // 리워드 히스토리 화면
         val POSTDETAIL_FRAGMENT = "PostDetailFragment"
         val WRITE_FRAGMENT = "WriteFragment"
         val POST_FRAGMENT = "PostFragment"
         val CPI_FRAGMENT = "CPIFragment" //  인증샷 제출 화면
         val MYPAGE_FRAGMENT = "MyPageFragment"
         val SAFETYDATA_FRAGMENT = "SafetyDataFragment"
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,8 +68,7 @@ class MainActivity : AppCompatActivity() {
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
-        
-        requestPermissions(permissionList,0)
+
 
 //        addSampleData()
 //         replaceFragment(MAIN_FRAGMENT, false, null)
@@ -98,7 +100,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun replaceFragment(name:String, addToBackStack:Boolean, bundle: Bundle?){
+     fun replaceFragment(name:String, addToBackStack:Boolean, bundle: Bundle?){
         val fragmentTransaction = supportFragmentManager.beginTransaction()
 
         if(newFragment != null){
@@ -146,6 +148,7 @@ class MainActivity : AppCompatActivity() {
             fragmentTransaction.commit()
         }
     }
+
 
     fun removeFragment(name:String){
         supportFragmentManager.popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE)
@@ -300,4 +303,3 @@ data class SafetyImage(
     val sdId: Int?,
     val url: String?
 )
-
