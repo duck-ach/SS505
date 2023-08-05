@@ -13,7 +13,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/navHeaderUserImg"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:contentDescription="@string/nav_header_desc"
@@ -22,6 +22,7 @@
 
 
     <TextView
+        android:id="@+id/navHeaderUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
@@ -31,6 +32,7 @@
         android:textStyle="bold"
         />
     <TextView
+        android:id="@+id/navHeaderUserEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nav_header_email"
@@ -40,7 +42,7 @@
         />
 
     <TextView
-        android:id="@+id/pointView"
+        android:id="@+id/navHeaderUserPoint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nav_header_subtitle"

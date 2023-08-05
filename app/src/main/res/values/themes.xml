@@ -3,12 +3,9 @@
     <style name="Base.Theme.SS505" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
 
-      <item name="android:windowBackground">#2E335A</item>
-
-        <item name="android:windowBackground">#2E335A</item>
-
         <!-- 모든 UI 요소의 기본 색상 -->
         <item name="colorPrimary">#7C89F2</item>
+        <item name="android:windowBackground">#2E335A</item>
 
         <!-- 상단 상태바 색상 -->
         <item name="android:statusBarColor">@color/material_dynamic_tertiary99</item>
