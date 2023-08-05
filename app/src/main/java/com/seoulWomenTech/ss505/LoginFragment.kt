@@ -120,8 +120,15 @@ class LoginFragment : Fragment() {
                         // 입력한 비밀번호와 현재 계정의 비밀번호가 같다면
                         else {
                             mainActivity.userPosition = userData[0].idx
+                            val newBundle  = Bundle()
+                            newBundle.putString("userName",userData[0].name)
+                            newBundle.putString("userImage",userData[0].image)
+                            newBundle.putString("userEmail",userData[0].email)
+                            newBundle.putString("userPoint",userData[0].point.toString())
+
                             Snackbar.make(fragmentLoginBinding.root, "로그인 되었습니다", Snackbar.LENGTH_SHORT).show()
-                            mainActivity.replaceFragment(MainActivity.MAIN_FRAGMENT, false, null)
+
+                            mainActivity.replaceFragment(MainActivity.MAIN_FRAGMENT, false, newBundle)
                         }
 
 

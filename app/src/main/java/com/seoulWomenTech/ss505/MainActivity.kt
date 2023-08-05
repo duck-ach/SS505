@@ -32,7 +32,8 @@ class MainActivity : AppCompatActivity() {
         Manifest.permission.INTERNET
     )
 
-    var userPosition = 0
+    var userPosition = 1
+
     // 사용자가 누른 항목 번호
     var rowPosition = 0
 
@@ -67,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         
         requestPermissions(permissionList,0)
 
-        addSampleData()
+//        addSampleData()
 //         replaceFragment(MAIN_FRAGMENT, false, null)
         
 //        replaceFragment(ONBOARDING_FRAGMENT, false, null)
