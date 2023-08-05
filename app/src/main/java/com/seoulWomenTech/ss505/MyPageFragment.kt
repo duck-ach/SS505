@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import com.seoulWomenTech.ss505.databinding.FragmentMypageBinding
+import com.seoulWomenTech.ss505.databinding.NavHeaderSidebarBinding
 
 class MyPageFragment : Fragment() {
 
     lateinit var fragmentMyPageFragmentBinding: FragmentMypageBinding
     lateinit var mainActivity: MainActivity
+    lateinit var navHeaderSidebarBinding: NavHeaderSidebarBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +36,23 @@ class MyPageFragment : Fragment() {
             }
 
             navigationViewMyPage.run {
+                val headerView = getHeaderView(0)
+                navHeaderSidebarBinding = NavHeaderSidebarBinding.bind(headerView)
+                navHeaderSidebarBinding.run {
+                    val imgSrc = mainActivity.resources.getIdentifier(
+                        userInfo.image,
+                        "drawable",
+                        mainActivity.packageName
+                    )
+                    if (imgSrc != null) {
+                        navHeaderUserImg.setImageResource(imgSrc)
+                    }
+
+                    navHeaderUserName.text = userInfo.name
+                    navHeaderUserEmail.text = userInfo.email
+                    navHeaderUserPoint.text = "POINT : ${userInfo.point}"
+
+                }
                 setNavigationItemSelectedListener {
                     when(it.itemId){
                         R.id.nav_main -> {
@@ -79,6 +98,12 @@ class MyPageFragment : Fragment() {
 
             myPageUserName.text= userInfo.name
             myPageUserEmail.text= userInfo.email
+
+            btnMyPageUsePoint.setOnClickListener {
+                mainActivity.replaceFragment(MainActivity.REWARDS_FRAGMENT,true,null)
+            }
+
+
 
         }
 

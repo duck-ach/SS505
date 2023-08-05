@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import com.seoulWomenTech.ss505.databinding.FragmentCPIBinding
+import com.seoulWomenTech.ss505.databinding.NavHeaderSidebarBinding
 import java.net.HttpURLConnection
 import java.net.URL
 import kotlin.concurrent.thread
@@ -23,6 +24,7 @@ import kotlin.concurrent.thread
 class CPIFragment : Fragment() {
     lateinit var fragmentCPIBinding: FragmentCPIBinding
     lateinit var mainActivity: MainActivity
+    lateinit var navHeaderSidebarBinding: NavHeaderSidebarBinding
 
     // 앨범 액티비티를 실행하기 위한 런처
     lateinit var cpiLauncher: ActivityResultLauncher<Intent>
@@ -50,6 +52,25 @@ class CPIFragment : Fragment() {
             }
 
             navigationViewCPI.run {
+                val headerView = getHeaderView(0)
+                navHeaderSidebarBinding = NavHeaderSidebarBinding.bind(headerView)
+                navHeaderSidebarBinding.run {
+                    val imgSrc = mainActivity.resources.getIdentifier(
+                        userInfo.image,
+                        "drawable",
+                        mainActivity.packageName
+                    )
+                    if (imgSrc != null) {
+                        navHeaderUserImg.setImageResource(imgSrc)
+                    }
+
+                    navHeaderUserName.text = userInfo.name
+                    navHeaderUserEmail.text = userInfo.email
+                    navHeaderUserPoint.text = "POINT : ${userInfo.point}"
+
+                }
+
+
                 setNavigationItemSelectedListener {
                     when(it.itemId){
                         R.id.nav_main -> {
