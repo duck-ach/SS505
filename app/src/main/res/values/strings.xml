@@ -11,8 +11,8 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_challenge">Challenge</string>
+    <string name="menu_main">Main</string>
     <string name="menu_safedata">안전 자료</string>
-    <string name="menu_mypage">마이페이지</string>
+    <string name="menu_mypage">마이 페이지</string>
     <string name="menu_logout">Logout</string>
 </resources>
