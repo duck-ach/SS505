@@ -1,0 +1,73 @@
+<!-- row_comment.xml -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="comment"
+            type="com.seoulWomenTech.ss505.CommentClass" />
+
+        <variable
+            name="user"
+            type="com.seoulWomenTech.ss505.UserInfo" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:background="@color/cardview_shadow_start_color">
+
+        <!-- 프로필 사진 -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageViewProfile"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_image" /> <!-- imageUrl 속성을 사용하여 Glide를 이용해 이미지를 로드합니다. -->
+
+        <LinearLayout
+            android:layout_width="331dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="331dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp">
+
+                <TextView
+                    android:id="@+id/textViewUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WriterName"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="153dp"
+                    android:layout_height="7dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/textViewDate"
+                    android:layout_width="91dp"
+                    android:layout_height="wrap_content"
+                    android:text="Date"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewContent"
+                android:layout_width="310dp"
+                android:layout_height="29dp"
+                android:text="Content"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
