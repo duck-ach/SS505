@@ -32,7 +32,8 @@ class MainActivity : AppCompatActivity() {
         Manifest.permission.INTERNET
     )
 
-    var userPosition = 0
+    var userPosition = 1
+
     // 사용자가 누른 항목 번호
     var rowPosition = 0
 
@@ -53,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         val POST_FRAGMENT = "PostFragment"
         val CPI_FRAGMENT = "CPIFragment" //  인증샷 제출 화면
         val MYPAGE_FRAGMENT = "MyPageFragment"
+        val SAFETYDATA_FRAGMENT = "SafetyDataFragment"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         
         requestPermissions(permissionList,0)
 
-        addSampleData()
+//        addSampleData()
 //         replaceFragment(MAIN_FRAGMENT, false, null)
         
 //        replaceFragment(ONBOARDING_FRAGMENT, false, null)
@@ -115,6 +117,7 @@ class MainActivity : AppCompatActivity() {
             POST_FRAGMENT -> PostFragment()
             CPI_FRAGMENT -> CPIFragment()
             MYPAGE_FRAGMENT -> MyPageFragment()
+            SAFETYDATA_FRAGMENT -> SafetyDataFragment()
 
             else -> Fragment()
         }
