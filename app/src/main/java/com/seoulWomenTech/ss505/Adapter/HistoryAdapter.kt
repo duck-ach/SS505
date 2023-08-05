@@ -24,6 +24,7 @@ class HistoryAdapter(var ListHistory:ArrayList<HistoryModelClass>) : RecyclerVie
 
     // 레이아웃에 원하는 포멧 (시간, 날짜, 포인트 수)으로 데이터 보이도록
     override fun onBindViewHolder(holder: HistoryPointViewHolder, position: Int) {
+        holder.binding.rowRewardsChallengeName.text =ListHistory[position].name
         holder.binding.Time.text=ListHistory[position].timeAndDate
         holder.binding.Point.text=ListHistory[position].point
     }

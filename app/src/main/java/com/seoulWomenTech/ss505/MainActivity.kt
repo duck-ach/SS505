@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         val ADD_USER_FRAGMENT = "AddUserFragment" // 유저 정보 입력 화면
         val MAIN_FRAGMENT = "MainFragment" //  메인 화면
         val PARTICIPATE_FRAGMENT = "ParticipateFragment" //  참여 화면
-        val SAFETY_FRAGMENT = "SafetyFragment"  // 안전 자료
         val REWARDS_FRAGMENT = "RewardsFragment"  // 리워드 사용 화면
         val REWARDSHISTORY_FRAGMENT = "RewardsHistoryFragment"  // 리워드 히스토리 화면
         val POSTDETAIL_FRAGMENT = "PostDetailFragment"
@@ -120,6 +119,8 @@ class MainActivity : AppCompatActivity() {
             CPI_FRAGMENT -> CPIFragment()
             MYPAGE_FRAGMENT -> MyPageFragment()
             SAFETYDATA_FRAGMENT -> SafetyDataFragment()
+            REWARDS_FRAGMENT -> RewardsFragment()
+            REWARDSHISTORY_FRAGMENT -> RewardsHistoryFragment()
 
             else -> Fragment()
         }
