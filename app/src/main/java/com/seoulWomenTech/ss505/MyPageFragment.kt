@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
-import com.seoulWomenTech.ss505.databinding.ActivityMyPageFragmentBinding
 import com.seoulWomenTech.ss505.databinding.FragmentMypageBinding
 
 class MyPageFragment : Fragment() {
@@ -37,7 +36,7 @@ class MyPageFragment : Fragment() {
             navigationViewMyPage.run {
                 setNavigationItemSelectedListener {
                     when(it.itemId){
-                        R.id.nav_challenge -> {
+                        R.id.nav_main -> {
                             drawerLayoutMyPage.close()
                             mainActivity.supportFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                         }

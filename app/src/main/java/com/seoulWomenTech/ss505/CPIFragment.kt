@@ -1,13 +1,9 @@
 package com.seoulWomenTech.ss505
 
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,10 +11,7 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isInvisible
 import androidx.fragment.app.FragmentManager
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import com.seoulWomenTech.ss505.databinding.FragmentCPIBinding
@@ -59,9 +52,9 @@ class CPIFragment : Fragment() {
             navigationViewCPI.run {
                 setNavigationItemSelectedListener {
                     when(it.itemId){
-                        R.id.nav_challenge -> {
+                        R.id.nav_main -> {
                             drawerLayoutCPI.close()
-                            mainActivity.replaceFragment(MainActivity.MAIN_FRAGMENT,true,null)
+                            mainActivity.supportFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                         }
 
                         R.id.nav_safedata -> {
