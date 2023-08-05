@@ -5,14 +5,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.google.android.material.snackbar.Snackbar
 import com.seoulWomenTech.ss505.databinding.FragmentPostDetailBinding
 import com.seoulWomenTech.ss505.databinding.RowCommentBinding
 import com.seoulWomenTech.ss505.databinding.RowPostImageBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class PostDetailFragment : Fragment() {
 
@@ -52,19 +58,57 @@ class PostDetailFragment : Fragment() {
         recyclerViewComment.adapter = CommentRecyclerViewAdapter(commentList, userList)
         recyclerViewComment.layoutManager = LinearLayoutManager(mainActivity)
 
+        fragmentPostDetailBinding.buttonAddComment.setOnClickListener {
+            val content = fragmentPostDetailBinding.editTextComment.text.toString()
 
+            if (content.isEmpty()) {
+                Toast.makeText(requireContext(), "내용을 입력해주세요.", Toast.LENGTH_SHORT).show()
+            } else {
+                // TODO: 데이터베이스에 글 등록 로직 구현
+                val comment = CommentClass(
+                    post_id = post.post_id,
+                    content = content,
+                    date = getCurrentDate(),
+                    writer_id = 1,
+                    c_id = 5
+                )
+
+                CommentDAO.insertData(mainActivity, comment)
+
+                val commentAdapter = recyclerViewComment.adapter
+                commentList.add(comment)
+                commentAdapter?.notifyItemInserted(commentList.size - 1)
+                recyclerViewComment.scrollToPosition(commentList.size - 1)
+                
+                // EditText 초기화
+                fragmentPostDetailBinding.editTextComment.text.clear()
+            }
+        }
         return fragmentPostDetailBinding.root
+    }
+
+    private fun getCurrentDate(): String {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        return dateFormat.format(Date())
     }
 
     private fun displayPostDetails() {
         post?.let {
             // Display user information
             user?.let {
-                Glide.with(fragmentPostDetailBinding.root)
-                    .load(it.image)
-                    .transform(CircleCrop())
-                    .placeholder(R.drawable.placeholder_image)
-                    .into(fragmentPostDetailBinding.imageViewUser)
+
+                // Glide.with(fragmentPostDetailBinding.root)
+                //     .load(it.image)
+                //     .transform(CircleCrop())
+                //     .placeholder(R.drawable.placeholder_image)
+                //     .into(fragmentPostDetailBinding.imageViewUser)
+                val imgSrc = mainActivity.resources.getIdentifier(it.image, "drawable", mainActivity.packageName)
+
+                if(imgSrc!=null){
+                    fragmentPostDetailBinding.imageViewUser.setImageResource(imgSrc)
+                }
+
+                fragmentPostDetailBinding.imageViewUser.clipToOutline = true
                 fragmentPostDetailBinding.textViewUserName.text = it.name
             }
             Log.d(post.post_date, post.post_title)
@@ -81,10 +125,15 @@ class PostDetailFragment : Fragment() {
             RecyclerView.ViewHolder(rowPostImageBinding.root) {
 
             fun bind(imageUrl: String) {
-                Glide.with(rowPostImageBinding.root)
-                    .load(imageUrl)
-                    .placeholder(R.drawable.placeholder_2)
-                    .into(rowPostImageBinding.imageViewPostImage)
+                // Glide.with(rowPostImageBinding.root)
+                //     .load(imageUrl)
+                //     .placeholder(R.drawable.placeholder_2)
+                //     .into(rowPostImageBinding.imageViewPostImage)
+                val imgSrc = mainActivity.resources.getIdentifier(imageUrl, "drawable", mainActivity.packageName)
+
+                if(imgSrc!=null){
+                    rowPostImageBinding.imageViewPostImage.setImageResource(imgSrc)
+                }
             }
         }
 
@@ -116,11 +165,16 @@ class PostDetailFragment : Fragment() {
 
             fun bindData(comment: CommentClass, user: UserInfo?) {
                 user?.let {
-                    Glide.with(rowCommentBinding.root)
-                        .load(it.image)
-                        .transform(CircleCrop())
-                        .placeholder(R.drawable.placeholder_image)
-                        .into(rowCommentBinding.imageViewProfile)
+                    val imgSrc = mainActivity.resources.getIdentifier(it.image, "drawable", mainActivity.packageName)
+
+                    if(imgSrc!=null){
+                        rowCommentBinding.imageViewProfile.setImageResource(imgSrc)
+                    }
+                    //  Glide.with(rowCommentBinding.root)
+                    //      .load(it.image)
+                    //     .transform(CircleCrop())
+                    //     .placeholder(R.drawable.placeholder_image)
+                    //    .into(rowCommentBinding.imageViewProfile)
                     rowCommentBinding.textViewUserName.text = it.name
                 }
                 Log.d(comment.content, comment.date)
@@ -150,5 +204,11 @@ class PostDetailFragment : Fragment() {
 
             holder.bindData(comment, user)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        userList = UserInfoDAO.selectAllData(mainActivity)
+        commentList = CommentDAO.selectData(mainActivity, post.post_id)
     }
 }
